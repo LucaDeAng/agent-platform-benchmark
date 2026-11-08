@@ -104,6 +104,52 @@ Other counts:
 - 14 publish a billing unit: per minute, per resolution or outcome, per conversation, credits or seats.
   Cognigy, LivePerson and Ada show "contact sales" only.
 
+## Three dimensions and a synthetic index
+
+Each platform is also scored on three dimensions and one index. **These scores measure public
+documentation, not capability**: a vendor that documents less, or keeps its docs behind a login,
+scores lower whatever its product does.
+
+- Rules (written before any score was computed): [METHOD.md](METHOD.md), section "Dimension scores
+  and synthetic index".
+- Why these choices: [docs/evaluating-agents.md](docs/evaluating-agents.md), a short study of how
+  agents, platforms and composite indices are evaluated.
+- Tables, ranges, sensitivity analysis and how to read them: [docs/scores.md](docs/scores.md).
+
+| Dimension | Question | Criteria |
+|---|---|---|
+| Evaluation and quality assurance | Can a buyer measure the agent's quality before and after go-live with the vendor's tooling? | simulated users, regression suites, repeated trials, LLM judge, judge calibration, observability and QA (6) |
+| Production and governance readiness | Can it be integrated, escalated, secured and contracted under jurisdiction-neutral controls? | API tools, MCP, human handoff, AI callers, ISO 27001, SOC 2, billing unit, deployment model (8) |
+| Voice, channels and European fit | Can it reach European customers on their channels and languages, under EU-specific rules? | voice, chat, email, messaging, native telephony, SIP/BYOC, Italian, other EU languages, EU data residency, EU AI Act (10) |
+
+How a score is built:
+
+- Each cell is scored 1 if documented and 0.5 if the vendor states it only on marketing pages.
+- A not-found cell is never counted as zero. It counts 0 for a **lower bound** and 1 for an
+  **upper bound**, so every score is a range.
+- **Coverage** is the share of cells with evidence. The width of a range is 1 − coverage.
+- A dimension score is the mean of its criteria. The index is the equal-weight mean of the three
+  dimensions.
+
+What the scores show (all figures from [docs/scores.md](docs/scores.md)):
+
+1. **No ranking holds.** 98 of 136 platform pairs have overlapping index ranges. 14 of 17 platforms
+   move more than 2 places across the sensitivity scenarios. Under the rule fixed in advance, no
+   league table is published.
+2. **The evidence separates three bands, and band 3 is about where vendors publish.**
+   - Band 1 holds 12 platforms; band 2 holds ElevenAgents and Salesforce Agentforce.
+   - Band 3 holds Decagon, Parloa and Sierra, the three platforms whose product docs are behind a login.
+   - The bands depend on scoring vendor claims at 0.5. If claims counted as documentation, all 17
+     platforms would fall into one band.
+   - ElevenAgents is in band 2 although it has the second-highest coverage (91%): its vendor-states
+     cells cap its upper bound.
+3. **Missing data moves ranks more than weights do.** Across 31 sensitivity scenarios, which vary
+   weights, the value given to vendor claims, and each criterion left out in turn, a platform's
+   lower-bound rank spans a median of 4 positions. The ranks the missing data allows span a median
+   of 13.
+4. **Narrower search, wider ranges.** The median width of the index range is 0.22 for the 11
+   platforms with partial or no search coverage, against 0.14 for the 6 with full coverage.
+
 ## Limits, and how a score can be misread
 
 - **Uneven search coverage.** Because of a per-session cap on the web-search tool, six platforms
@@ -121,6 +167,10 @@ Other counts:
   judge-calibration evidence (Google Quality AI, Zendesk QA, Genesys AI scoring, Amazon evaluations)
   comes from QA products whose pages describe human agents' conversations without saying whether
   they cover AI-agent conversations.
+- **Scores add conventions.** The dimension scores and the index add choices on top of the cells:
+  0.5 for a vendor claim, equal weights, linear aggregation. [docs/scores.md](docs/scores.md) shows
+  how much each choice moves the results. A range is a bound under those conventions, not a
+  confidence interval.
 - **Vendor statements are unverified.** Certifications listed on trust centres were not checked
   against audit reports. Announcement-stage features (October 2026) may not be generally available.
 - **Tooling.** Pages were read by LLM agents through an automated fetch-and-summarise tool. Some trust
@@ -157,15 +207,21 @@ collection, so it is not independent.
 |---|---|
 | `METHOD.md` | Scope, inclusion rule, rubric, search procedure, limits, changes after collection |
 | `data/platforms.csv` | Platforms, inclusion signal and source, `public_docs`, `search_coverage` |
-| `data/criteria.csv` | Criterion IDs, labels, groups |
+| `data/criteria.csv` | Criterion IDs, labels, display groups, scoring dimension |
+| `data/dimensions.csv` | The three scoring dimensions and their default weights |
 | `data/evidence.csv` | One row per (platform, criterion): status, value, source type, URL, access date, paraphrase |
 | `data/reverification.csv` | The 10% re-verification sample and its outcome |
-| `scripts/benchmark.py` | Validation, not-applicable rules, sampling, `docs/results.md` generation |
+| `scripts/benchmark.py` | Validation, not-applicable rules, sampling, scoring, sensitivity analysis, generation of every output |
 | `docs/results.md` | Capability matrix, per-criterion counts, recorded values |
+| `docs/scores.md` | Dimension scores, index ranges, coverage, bands, sensitivity analysis |
+| `docs/evaluating-agents.md` | Study behind the dimensions and the index, with sources |
+| `data/export/platforms.json` | Machine-readable export: platforms, criteria, evidence, scores, scenarios (one `id` per record) |
+| `data/export/platforms.schema.json` | JSON Schema of the export (version 1.0.0) |
 
 ```
-uv run python scripts/benchmark.py check   # validate data/evidence.csv
-uv run python scripts/benchmark.py build   # regenerate docs/results.md
+uv run python scripts/benchmark.py check    # validate the data files
+uv run python scripts/benchmark.py build    # regenerate docs/results.md, docs/scores.md and the export
+uv run python scripts/benchmark.py scores   # regenerate docs/scores.md and the export only
 uv run pytest
 ```
 

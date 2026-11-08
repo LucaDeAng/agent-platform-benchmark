@@ -332,4 +332,7 @@ All decided on 2026-11-08 after the first collection pass, i.e. **not blind** to
    table, score ranges, an equal-weight index and a sensitivity analysis were added after collection
    (section "Dimension scores and synthetic index" above). The rules were committed before any
    dimension or index score was computed, in a separate commit, but with the cell-level matrix
-   already known. No evidence cell was changed for this step.
+   already known. No evidence cell was changed for this step. After the first results were seen,
+   three reporting elements were added to `docs/scores.md`: band stability across scenarios, the
+   list of scenarios that change a band, and a note on platforms placed below better-covered ones.
+   They report results and change no rule.

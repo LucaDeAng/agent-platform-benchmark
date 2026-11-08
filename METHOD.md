@@ -154,13 +154,21 @@ All decided on 2026-11-08 after the first collection pass, i.e. **not blind** to
    is public is recorded in the new `public_docs` column of `data/platforms.csv` (`yes`, `partial`,
    `no`). For vendors with `public_docs = no`, most cells can only be `vendor_states` or `not_found`;
    that reflects where they publish, not what their products do.
-2. **Search budget.** The web-search tool has a per-session cap that was reached during the first
-   pass, after roughly two-thirds of the platforms. Platforms collected later (all or part of Decagon,
-   Parloa, PolyAI, Vapi, Kore.ai, LivePerson, Genesys, Amazon Connect, Salesforce, Zendesk, Ada) were
-   collected from vendor documentation indexes (`llms.txt`, sitemaps, public help-centre search APIs)
-   and direct page fetches instead of web searches. To even this out, a **gap pass** re-ran one
-   standard web search (template above) for every `not_found` cell of every platform; notes of cells
-   touched in the gap pass say so.
+2. **Search budget: the search procedure was not applied evenly.** The web-search tool has a
+   per-session cap (200 calls, refilling at about 100 per hour) that was reached during the first
+   pass. Each platform's coverage is recorded in the `search_coverage` column of `data/platforms.csv`:
+   - `full` (web searches available for every cell): Sierra, Cognigy, Intercom, Microsoft, Google, ElevenLabs.
+   - `partial` (searches ran out part-way): Decagon, Vapi, Amazon Connect, Salesforce, Zendesk.
+   - `none` (no web searches): Parloa, PolyAI, Kore.ai, LivePerson, Genesys, Ada.
+
+   Platforms without full coverage were collected from vendor documentation indexes (`llms.txt`,
+   sitemaps, public help-centre search APIs) and direct page fetches. A **gap pass** then re-checked
+   every `not_found` cell of every platform the same way (indexes and direct fetches), and applied the
+   coding rules below; it changed 17 cells. Standard web searches, meant to give every remaining `not_found`
+   cell one search, reached only 8 cells (7 Sierra, 1 Decagon) across the gap pass and a follow-up
+   sweep before the cap was hit again; none of them found a vendor page. Notes record which of these steps touched
+   each cell. Consequence: a `not_found` on a platform with `search_coverage` `partial` or `none` rests
+   on a narrower search than one on a `full` platform.
 3. **Coding rules made explicit** after the collectors raised borderline cases, applied to all
    platforms in the gap pass:
    - `aiact`: counts only if the page states the vendor's own approach, role or measures regarding the
@@ -168,9 +176,10 @@ All decided on 2026-11-08 after the first collection pass, i.e. **not blind** to
      list, or a page that only explains the law is `not_found`, with the badge mentioned in the note.
    - `residency_eu`: needs a statement that customer data is stored or processed in an EU region, data
      centre or instance. An EU API endpoint alone is `not_found`, mentioned in the note.
-   - `eval_judge_cal`: needs a page telling users to compare or tune the AI grader against human
-     judgment, or a feature that measures agreement between AI and human ratings. "Review results and
-     refine criteria" alone is `not_found`.
+   - `eval_judge_cal`: needs a page saying the AI grader is compared with, or tuned against, human
+     judgment: guidance telling users to do it, a feature that measures AI-human agreement, or the
+     vendor stating that it validates its own grader with human labels. "Review results and refine
+     criteria" alone is `not_found`.
    - `eval_repeat`: needs the same test run several times **and** a result reported across the runs
      (pass count over iterations, pass rate, majority vote, consistency score). "Tests can be re-run",
      or variations of a scenario, is `not_found`.

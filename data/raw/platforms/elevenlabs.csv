@@ -1,2 +1,2 @@
-platform_id,name,vendor,products_covered,docs_root,trust_url,pricing_url,included,signal,signal_url,signal_note,accessed
-elevenlabs,ElevenLabs Agents,ElevenLabs,ElevenAgents (formerly Agents Platform / Conversational AI); Reception,https://elevenlabs.io/docs/eleven-agents/overview,https://compliance.elevenlabs.io/,https://elevenlabs.io/pricing/agents,yes,C2,https://elevenlabs.io/blog/series-d,Vendor blog: USD 500M Series D at USD 11B valuation (Feb 2026),2026-11-08
+platform_id,name,vendor,products_covered,docs_root,trust_url,pricing_url,public_docs,included,signal,signal_url,signal_note,accessed
+elevenlabs,ElevenLabs Agents,ElevenLabs,ElevenAgents (formerly Agents Platform / Conversational AI); Reception,https://elevenlabs.io/docs/eleven-agents/overview,https://compliance.elevenlabs.io/,https://elevenlabs.io/pricing/agents,yes,yes,C2,https://elevenlabs.io/blog/series-d,Vendor blog: USD 500M Series D at USD 11B valuation (Feb 2026),2026-11-08

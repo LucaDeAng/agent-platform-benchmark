@@ -1,2 +1,2 @@
-platform_id,name,vendor,products_covered,docs_root,trust_url,pricing_url,included,signal,signal_url,signal_note,accessed
-polyai,PolyAI,PolyAI,PolyAI Agent Studio (voice; web chat; SMS; email); PolyAI API,https://docs.poly.ai,https://poly.ai/security,https://poly.ai/pricing,yes,C2,https://poly.ai/blog/polyai-raises-86m-to-transform-how-enterprises-talk-to-their-customers,Vendor blog: USD 86M Series D (15 Dec 2025),2026-11-08
+platform_id,name,vendor,products_covered,docs_root,trust_url,pricing_url,public_docs,included,signal,signal_url,signal_note,accessed
+polyai,PolyAI,PolyAI,PolyAI Agent Studio (voice; web chat; SMS; email); PolyAI API,https://docs.poly.ai,https://poly.ai/security,https://poly.ai/pricing,yes,yes,C2,https://poly.ai/blog/polyai-raises-86m-to-transform-how-enterprises-talk-to-their-customers,Vendor blog: USD 86M Series D (15 Dec 2025),2026-11-08

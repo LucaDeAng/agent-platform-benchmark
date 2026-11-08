@@ -1,0 +1,17 @@
+Data licence: Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Applies to everything under data/ and docs/, and to METHOD.md and README.md.
+Code (scripts/, tests/) is under the MIT licence in LICENSE.
+
+Copyright (c) 2026 Luca De Angelis
+
+You are free to share and adapt this material for any purpose, including
+commercially, as long as you give appropriate credit, provide a link to the
+licence, and indicate if changes were made.
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+The dataset records what third-party public web pages said on the access date
+shown in each row. Those pages remain the property of their publishers; the
+dataset contains only short paraphrases and links, not copies of them.
+Product and company names are trademarks of their owners.

@@ -31,6 +31,7 @@ all of A, B and at least one of C:
 - **A. Product.** It sells an AI agent that holds customer-service conversations autonomously in voice
   or chat (not only agent-assist, not only a raw model or telephony API).
 - **B. Public docs.** It has product documentation or a help centre readable without a login.
+  (Relaxed after collection started; see "Changes after collection started".)
 - **C. Market-presence signal** (at least one, with a public URL recorded in `data/platforms.csv`):
   - C1. The product belongs to a publicly listed company or to a subsidiary of one.
   - C2. Disclosed equity funding, or a disclosed acquisition price, of at least USD 20 million in a
@@ -143,4 +144,35 @@ recorded status; `not_found` cells by re-running one standard query. Results go 
 
 ## Changes after collection started
 
-(none yet)
+All decided on 2026-11-08 after the first collection pass, i.e. **not blind** to the data.
+
+1. **Rule B relaxed.** As written, rule B excluded Sierra, Decagon and Parloa: their product
+   documentation requires a login (docs.sierra.ai, docs.decagon.ai, the Parloa AMP and developer
+   docs), and no public help centre was found. Excluding three of the most-discussed vendors would make
+   the benchmark less useful to its readers, so B now reads: *the vendor publishes product pages,
+   documentation or a help centre readable without a login*. Whether the product documentation itself
+   is public is recorded in the new `public_docs` column of `data/platforms.csv` (`yes`, `partial`,
+   `no`). For vendors with `public_docs = no`, most cells can only be `vendor_states` or `not_found`;
+   that reflects where they publish, not what their products do.
+2. **Search budget.** The web-search tool has a per-session cap that was reached during the first
+   pass, after roughly two-thirds of the platforms. Platforms collected later (all or part of Decagon,
+   Parloa, PolyAI, Vapi, Kore.ai, LivePerson, Genesys, Amazon Connect, Salesforce, Zendesk, Ada) were
+   collected from vendor documentation indexes (`llms.txt`, sitemaps, public help-centre search APIs)
+   and direct page fetches instead of web searches. To even this out, a **gap pass** re-ran one
+   standard web search (template above) for every `not_found` cell of every platform; notes of cells
+   touched in the gap pass say so.
+3. **Coding rules made explicit** after the collectors raised borderline cases, applied to all
+   platforms in the gap pass:
+   - `aiact`: counts only if the page states the vendor's own approach, role or measures regarding the
+     EU AI Act (company-wide pages count and are labelled as such). A badge, a line in a certificate
+     list, or a page that only explains the law is `not_found`, with the badge mentioned in the note.
+   - `residency_eu`: needs a statement that customer data is stored or processed in an EU region, data
+     centre or instance. An EU API endpoint alone is `not_found`, mentioned in the note.
+   - `eval_judge_cal`: needs a page telling users to compare or tune the AI grader against human
+     judgment, or a feature that measures agreement between AI and human ratings. "Review results and
+     refine criteria" alone is `not_found`.
+   - `eval_repeat`: needs the same test run several times **and** a result reported across the runs
+     (pass count over iterations, pass rate, majority vote, consistency score). "Tests can be re-run",
+     or variations of a scenario, is `not_found`.
+   - `aicaller`: agent-to-agent (A2A) endpoints alone, and answering-machine detection, do not count.
+   - `cert_iso27001`: "aligned with ISO 27001" is not a certification and is `not_found`.

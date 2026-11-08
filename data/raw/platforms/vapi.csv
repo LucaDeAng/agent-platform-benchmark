@@ -1,0 +1,2 @@
+platform_id,name,vendor,products_covered,docs_root,trust_url,pricing_url,included,signal,signal_url,signal_note,accessed
+vapi,Vapi,Vapi,Vapi voice agent platform (assistants; squads; chat API),https://docs.vapi.ai,https://security.vapi.ai/,https://docs.vapi.ai/billing/pricing-and-success-packages,yes,C2,https://telecomtalk.info/vapi-raises-usd20million-ai-voice-agents-enterprises/986342,Press: USD 20M Series A led by Bessemer Venture Partners announced 12 Dec 2024 (meets the USD 20M threshold exactly),2026-11-08

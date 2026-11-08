@@ -2,10 +2,11 @@
 
 Usage:
     uv run python scripts/benchmark.py check            # validate data files
-    uv run python scripts/benchmark.py check-raw FILE   # validate one per-platform raw file
-    uv run python scripts/benchmark.py merge            # collection phase only: data/raw/*.csv -> data/evidence.csv
     uv run python scripts/benchmark.py sample           # draw the 10% re-verification sample
     uv run python scripts/benchmark.py build            # write docs/results.md
+
+During collection, per-platform files were merged into data/evidence.csv (see the git history and
+METHOD.md, change 5); that step has been removed now that evidence.csv is the only data file.
 
 Standard library only. Every number in docs/results.md is computed here from the CSV files.
 """
@@ -125,39 +126,6 @@ def cmd_check() -> int:
     return 1 if errors else 0
 
 
-def cmd_check_raw(path: str) -> int:
-    rows = read_csv(Path(path))
-    plats = sorted({r["platform_id"] for r in rows})
-    crits = [c["criterion_id"] for c in criteria()]
-    errors = validate(rows, plats, crits)
-    for e in errors:
-        print(e)
-    print(f"{path}: {len(rows)} rows, {len(errors)} problem(s)")
-    return 1 if errors else 0
-
-
-def cmd_merge() -> int:
-    plat_rows = read_csv(PLATFORMS)
-    fields = list(plat_rows[0])
-    updates = {}
-    for path in sorted((DATA / "raw" / "platforms").glob("*.csv")):
-        for r in read_csv(path):
-            updates[r["platform_id"]] = r
-    plat_rows = [updates.get(p["platform_id"], p) for p in plat_rows]
-    write_csv(PLATFORMS, plat_rows, fields)
-    print(f"updated {len(updates)} platform rows in {PLATFORMS.relative_to(ROOT)}")
-
-    rows: list[dict[str, str]] = []
-    for path in sorted((DATA / "raw").glob("*.csv")):
-        rows.extend(read_csv(path))
-    order_p = {p["platform_id"]: i for i, p in enumerate(included_platforms())}
-    order_c = {c["criterion_id"]: i for i, c in enumerate(criteria())}
-    rows.sort(key=lambda r: (order_p.get(r["platform_id"], 99), order_c.get(r["criterion_id"], 99)))
-    write_csv(EVIDENCE, apply_na(rows), EVIDENCE_FIELDS)
-    print(f"merged {len(rows)} rows into {EVIDENCE.relative_to(ROOT)}")
-    return cmd_check()
-
-
 def cmd_sample() -> int:
     rows = read_csv(EVIDENCE)
     k = round(len(rows) * SAMPLE_SHARE)
@@ -241,12 +209,19 @@ def cmd_build() -> int:
     L.append("")
     L.append(f"Out of {len(plats)} platforms.")
     L.append("")
-    L.append("| Criterion | D documented | V vendor states | D + V | not found | n/a |")
-    L.append("|---|---|---|---|---|---|")
+    L.append("The last column says how many of the not-found cells are on platforms whose search coverage was "
+             "`partial` or `none` (METHOD.md, change 2), i.e. rest on a narrower search.")
+    L.append("")
+    L.append("| Criterion | D documented | V vendor states | D + V | not found | n/a | not found on partial/none coverage |")
+    L.append("|---|---|---|---|---|---|---|")
+    narrow = {p["platform_id"] for p in plats if p["search_coverage"] in ("partial", "none")}
     for c in crits:
-        cnt = Counter(cell[(p["platform_id"], c["criterion_id"])]["status"] for p in plats)
+        cs = [cell[(p["platform_id"], c["criterion_id"])] for p in plats]
+        cnt = Counter(r["status"] for r in cs)
+        nn = sum(r["status"] == "not_found" and r["platform_id"] in narrow for r in cs)
         L.append(f"| {c['label']} (`{c['criterion_id']}`) | {cnt['documented']} | {cnt['vendor_states']} | "
-                 f"{cnt['documented'] + cnt['vendor_states']} | {cnt['not_found']} | {cnt['not_applicable']} |")
+                 f"{cnt['documented'] + cnt['vendor_states']} | {cnt['not_found']} | {cnt['not_applicable']} | "
+                 f"{nn} of {cnt['not_found']} |")
     L.append("")
 
     L.append("## Recorded values")
@@ -289,9 +264,7 @@ def cmd_build() -> int:
 
 
 def main(argv: list[str]) -> int:
-    if len(argv) == 3 and argv[1] == "check-raw":
-        return cmd_check_raw(argv[2])
-    cmds = {"check": cmd_check, "merge": cmd_merge, "sample": cmd_sample, "build": cmd_build}
+    cmds = {"check": cmd_check, "sample": cmd_sample, "build": cmd_build}
     if len(argv) != 2 or argv[1] not in cmds:
         print(__doc__)
         return 2

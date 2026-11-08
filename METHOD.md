@@ -21,6 +21,10 @@ that is documented has not been tested by us. Nothing here was verified hands-on
   contact with vendors, pages disallowed by robots.txt.
 - Access date of every row is recorded. Public pages change; the dataset is a snapshot.
 - No prices are reproduced, only the billing unit a vendor publishes.
+- Tooling: evidence collection, the gap pass and the re-verification were carried out by LLM agents
+  with web-search and page-fetch tools, under the author's supervision. The author wrote the rubric,
+  reviewed the agents' reports and decided borderline cases. The re-verification therefore uses the
+  same kind of tooling as the collection and is not an independent audit.
 
 ## Entity selection rule
 
@@ -191,3 +195,23 @@ All decided on 2026-11-08 after the first collection pass, i.e. **not blind** to
 5. **Per-platform raw files removed.** Collection used one file per platform (`data/raw/`, visible in
    the git history); after the gap pass they were merged into `data/evidence.csv`, which is the only
    canonical data file. Corrections from re-verification were made there directly.
+6. **Changes after an external review (2026-11-08).**
+   - `parloa,residency_eu`: `not_found` to `vendor_states` (Parloa Labs post of 1 Oct 2026: the
+     app.parloa.com stamp is hosted in Germany). A Parloa FAQ quoted by the reviewer on regional data
+     centres could not be confirmed in the fetched page text, so it is not cited.
+   - `parloa,deploy_model`: `partner_led` to `vendor_led;partner_led` (FAQ: Parloa engineers, success
+     teams and partners guide rollout).
+   - `elevenlabs,aiact`: `documented` to `not_found` under the `aiact` rule (a use policy that only
+     bans prohibited uses and leaves compliance to the customer states no vendor posture).
+   - Every remaining `not_found` cell of Parloa (6) and PolyAI (4) received one standard web search
+     (one query covered both Parloa language cells); none found a vendor page that could be read. A
+     Parloa docs page on supported languages appeared in the results but returns an error page, so it
+     was not counted.
+   - Names: "Fin (formerly Intercom)" (renamed 12 May 2026; acquired by Salesforce, completed
+     10 Sep 2026, so its inclusion signal is now C1), "ElevenAgents (ElevenLabs)", "Google Gemini
+     Enterprise for CX (formerly Customer Engagement Suite)". Platform IDs are unchanged.
+   - Wording and minor value fixes: protocol status written as "in development" (PAP) and
+     "specification in progress" (PACT); Sierra pricing adds `per_conversation`; Zendesk regression
+     cites the conversation-simulator page.
+   - The results table now reports, per criterion, how many `not_found` cells are on platforms with
+     `partial` or `none` search coverage.

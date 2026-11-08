@@ -1,25 +1,25 @@
-criterion_id,group,short,label,has_value
-ch_voice,Channels and telephony,Voice,Voice channel,no
-ch_chat,Channels and telephony,Chat,Chat channel,no
-ch_email,Channels and telephony,Email,Email channel,no
-ch_messaging,Channels and telephony,Msg,Messaging channels,yes
-tel_native,Channels and telephony,PSTN,Native telephony (numbers in platform),no
-tel_byoc,Channels and telephony,SIP/BYOC,Bring your own carrier / SIP,no
-lang_it,Languages,IT,Italian listed,yes
-lang_eu,Languages,EU5+,At least 5 other EU official languages listed,yes
-tools_api,Tools and evaluation,API,Tools via APIs / functions / webhooks,no
-tools_mcp,Tools and evaluation,MCP,Model Context Protocol,yes
-eval_sim,Tools and evaluation,Sim,Simulated-user testing,no
-eval_regression,Tools and evaluation,Regr,Regression test suites,no
-eval_repeat,Tools and evaluation,Rep,Repeated-trial metric (pass^k or similar),no
-eval_judge,Tools and evaluation,Judge,LLM judge / AI grader,no
-eval_judge_cal,Tools and evaluation,Cal,Judge calibration against human labels,no
-obs_qa,Operations,Obs/QA,Observability and QA,yes
-handoff,Operations,Handoff,Human handoff with context,yes
-aicaller,Operations,AI caller,AI-caller detection / declared-agent protocol,yes
-residency_eu,Compliance and commercial,EU res,EU data residency,no
-cert_iso27001,Compliance and commercial,ISO,ISO/IEC 27001,no
-cert_soc2,Compliance and commercial,SOC2,SOC 2,yes
-aiact,Compliance and commercial,AI Act,EU AI Act page,no
-pricing_model,Compliance and commercial,Pricing,Public billing unit,yes
-deploy_model,Compliance and commercial,Deploy,Deployment model,yes
+criterion_id,group,short,label,has_value,dimension_id
+ch_voice,Channels and telephony,Voice,Voice channel,no,voice_eu
+ch_chat,Channels and telephony,Chat,Chat channel,no,voice_eu
+ch_email,Channels and telephony,Email,Email channel,no,voice_eu
+ch_messaging,Channels and telephony,Msg,Messaging channels,yes,voice_eu
+tel_native,Channels and telephony,PSTN,Native telephony (numbers in platform),no,voice_eu
+tel_byoc,Channels and telephony,SIP/BYOC,Bring your own carrier / SIP,no,voice_eu
+lang_it,Languages,IT,Italian listed,yes,voice_eu
+lang_eu,Languages,EU5+,At least 5 other EU official languages listed,yes,voice_eu
+tools_api,Tools and evaluation,API,Tools via APIs / functions / webhooks,no,prod_gov
+tools_mcp,Tools and evaluation,MCP,Model Context Protocol,yes,prod_gov
+eval_sim,Tools and evaluation,Sim,Simulated-user testing,no,eval_qa
+eval_regression,Tools and evaluation,Regr,Regression test suites,no,eval_qa
+eval_repeat,Tools and evaluation,Rep,Repeated-trial metric (pass^k or similar),no,eval_qa
+eval_judge,Tools and evaluation,Judge,LLM judge / AI grader,no,eval_qa
+eval_judge_cal,Tools and evaluation,Cal,Judge calibration against human labels,no,eval_qa
+obs_qa,Operations,Obs/QA,Observability and QA,yes,eval_qa
+handoff,Operations,Handoff,Human handoff with context,yes,prod_gov
+aicaller,Operations,AI caller,AI-caller detection / declared-agent protocol,yes,prod_gov
+residency_eu,Compliance and commercial,EU res,EU data residency,no,voice_eu
+cert_iso27001,Compliance and commercial,ISO,ISO/IEC 27001,no,prod_gov
+cert_soc2,Compliance and commercial,SOC2,SOC 2,yes,prod_gov
+aiact,Compliance and commercial,AI Act,EU AI Act page,no,voice_eu
+pricing_model,Compliance and commercial,Pricing,Public billing unit,yes,prod_gov
+deploy_model,Compliance and commercial,Deploy,Deployment model,yes,prod_gov

@@ -1,0 +1,4 @@
+dimension_id,order,label,question,default_weight
+eval_qa,1,Evaluation and quality assurance,Can a buyer measure the agent's quality before and after go-live with the vendor's own tooling?,1/3
+prod_gov,2,Production and governance readiness,"Can the agent be integrated, escalated, secured and contracted under jurisdiction-neutral enterprise controls?",1/3
+voice_eu,3,"Voice, channels and European fit","Can the agent reach European customers on the channels and languages they use, under EU-specific data and AI rules?",1/3

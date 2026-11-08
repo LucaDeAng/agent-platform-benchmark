@@ -135,6 +135,119 @@ cell is re-checked: cells with a URL by refetching that URL and judging whether 
 recorded status; `not_found` cells by re-running one standard query. Results go to
 `data/reverification.csv`; the script reports the agreement rate.
 
+## Dimension scores and synthetic index
+
+Added on 2026-11-08, after evidence collection had finished. The rules in this section were
+written and committed **before any dimension or index score was computed**, but they are **not
+blind to the cell-level data**: the full status matrix was already public in `docs/results.md`. The
+reasoning behind the choices is in [docs/evaluating-agents.md](docs/evaluating-agents.md).
+
+### Three dimensions
+
+Each of the 24 criteria belongs to exactly one dimension. The mapping is the `dimension_id` column of
+`data/criteria.csv`, and the dimensions are defined in `data/dimensions.csv`.
+
+| Dimension | Question it answers | Criteria (n) |
+|---|---|---|
+| `eval_qa` Evaluation and quality assurance | Can a buyer measure the agent's quality before and after go-live with the vendor's own tooling? | `eval_sim`, `eval_regression`, `eval_repeat`, `eval_judge`, `eval_judge_cal`, `obs_qa` (6) |
+| `prod_gov` Production and governance readiness | Can the agent be integrated, escalated, secured and contracted under jurisdiction-neutral enterprise controls? | `tools_api`, `tools_mcp`, `handoff`, `aicaller`, `cert_iso27001`, `cert_soc2`, `pricing_model`, `deploy_model` (8) |
+| `voice_eu` Voice, channels and European fit | Can the agent reach European customers on the channels and languages they use, under EU-specific data and AI rules? | `ch_voice`, `ch_chat`, `ch_email`, `ch_messaging`, `tel_native`, `tel_byoc`, `lang_it`, `lang_eu`, `residency_eu`, `aiact` (10) |
+
+Why these three:
+
+- The starting proposal (evaluation and QA; production and governance; voice and European fit) was
+  kept, because it matches the three questions the study identifies for a deployment lead: can I
+  measure it, can I run it under control, can it serve my customers. The study did not find a
+  better-founded split for criteria that record only whether something is documented.
+- `obs_qa` sits in `eval_qa`, not in production: production monitoring is the post-launch half of
+  evaluation (NIST AI RMF, MEASURE 2.4; see the study).
+- `handoff` and `aicaller` sit in `prod_gov`: they are controls on how a live agent fails safely or
+  meets an unexpected counterpart. The criteria record whether the feature exists, not how good the
+  escalation is, so they are not evaluation criteria.
+- `residency_eu` and `aiact` sit in `voice_eu`, not in `prod_gov`. The rule: a requirement specific
+  to serving customers in the EU goes to `voice_eu`; a control that applies in any jurisdiction
+  (ISO 27001, SOC 2) goes to `prod_gov`.
+- `pricing_model` and `deploy_model` sit in `prod_gov` as commercial transparency: a published
+  billing unit lets a buyer estimate cost per resolved contact, and a stated deployment model says
+  who does the work. Neither says anything about product quality.
+- `voice_eu` also contains chat, email and messaging: it is about reach, with voice and EU
+  requirements as the part this benchmark adds.
+
+### Level-to-value table
+
+Each cell's status becomes a value between 0 and 1. A cell without evidence has no single value: it
+gets a lower and an upper value.
+
+| Status | Lower value | Upper value | Why |
+|---|---|---|---|
+| `documented` | 1 | 1 | The vendor documents the capability in product docs, trust, pricing or legal pages. |
+| `vendor_states` | 0.5 | 0.5 | The vendor claims it on marketing, blog or press pages only. A buyer cannot check configuration or scope from public documentation. |
+| `not_found` | 0 | 1 | Unknown. The lower bound assumes the capability is absent, the upper bound assumes it is documented. |
+| `not_applicable` | 0 | 1 | Unknown, because the parent criterion (voice channel, LLM judge) was not found. Treated like `not_found`. |
+
+Only the status is scored. Recorded values (which channels, which billing unit, voice-only Italian,
+and so on) are not scored; every criterion uses the same table. The value 0.5 for `vendor_states`
+is a judgement, so the sensitivity analysis also runs it at 0 and at 1.
+
+### Dimension scores, ranges and coverage
+
+For each platform and dimension:
+
+- **lower bound** = mean of the criteria's lower values (`not_found` counts as 0);
+- **upper bound** = mean of the criteria's upper values (`not_found` counts as 1);
+- **coverage** = share of the dimension's cells with evidence (`documented` or `vendor_states`).
+
+By construction, upper minus lower = 1 − coverage. A score is always reported as a range, never as a
+single number. No midpoint is published, because a midpoint would amount to imputing 0.5 to every
+unknown cell.
+
+### Synthetic index
+
+- **Default:** weighted arithmetic mean of the three dimension scores with equal weights (1/3 each),
+  computed separately for the lower and the upper bound. Index coverage = the same weighted mean of
+  the dimension coverages, so that index upper − lower = 1 − index coverage. The raw number of cells
+  with evidence (out of 24) is reported alongside.
+- Equal weights across dimensions mean unequal weights across criteria: each `eval_qa` criterion
+  weighs 1/18, each `prod_gov` criterion 1/24 and each `voice_eu` criterion 1/30 of the index.
+- Linear aggregation is compensatory: a high score in one dimension offsets a low score in another.
+  Weights are trade-offs, not measures of importance (OECD/JRC Handbook, p. 31–33).
+
+### Sensitivity analysis
+
+All scenarios are computed for both the lower and the upper bound:
+
+1. **Weightings** (dimension weights `eval_qa` / `prod_gov` / `voice_eu`): equal 1/3 each (default);
+   evaluation-heavy 1/2, 1/4, 1/4; governance-heavy 1/4, 1/2, 1/4; EU-heavy 1/4, 1/4, 1/2;
+   criterion-equal 6/24, 8/24, 10/24 (every criterion weighs 1/24).
+2. **Value table:** `vendor_states` = 0 and `vendor_states` = 1, with equal weights.
+3. **Leave one criterion out:** each of the 24 criteria dropped in turn, equal weights, the dimension
+   score being the mean of its remaining criteria.
+
+Ranks use competition ranking: rank = 1 + the number of platforms with a strictly higher score, so
+tied platforms share a rank. For each platform the script reports its rank range (best and worst
+rank) across scenarios, separately for lower-bound and upper-bound scores, and the most influential
+criteria in the leave-one-out runs.
+
+**Possible rank under missing data.** With the default weights, a platform's best possible rank is
+reached when its unknown cells are all 1 and every other platform's are all 0, and its worst possible
+rank in the opposite case: best = 1 + the number of platforms whose lower bound exceeds its upper
+bound; worst = 1 + the number of platforms whose upper bound exceeds its lower bound.
+
+### When a ranking is shown, and bands otherwise
+
+A ranked list of platforms by index is published only if **both** hold:
+
+- (a) fewer than half of all platform pairs have overlapping default index ranges (two ranges
+  overlap unless one's lower bound exceeds the other's upper bound); and
+- (b) every platform's rank range across the sensitivity scenarios spans at most 3 positions (best
+  and worst rank differ by at most 2), for lower-bound and for upper-bound ranks alike.
+
+Otherwise `docs/scores.md` lists platforms alphabetically with their ranges and assigns **bands**
+by interval dominance on the default index. Platform B dominates platform A when B's lower bound
+exceeds A's upper bound. Band 1 holds the platforms that no platform dominates; band 2 the platforms
+dominated only by band-1 platforms; and so on. A band says which platforms the public evidence can
+separate. It is not a quality grade, and platforms within a band are not ordered.
+
 ## Limits
 
 - Public visibility is not capability, and absence from public pages is not absence.
@@ -215,3 +328,8 @@ All decided on 2026-11-08 after the first collection pass, i.e. **not blind** to
      cites the conversation-simulator page.
    - The results table now reports, per criterion, how many `not_found` cells are on platforms with
      `partial` or `none` search coverage.
+7. **Dimension scores and synthetic index added (2026-11-08).** Three dimensions, a level-to-value
+   table, score ranges, an equal-weight index and a sensitivity analysis were added after collection
+   (section "Dimension scores and synthetic index" above). The rules were committed before any
+   dimension or index score was computed, in a separate commit, but with the cell-level matrix
+   already known. No evidence cell was changed for this step.

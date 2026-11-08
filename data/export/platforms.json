@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "id": "agent-platform-benchmark-2026-11",
   "title": "Agent platform benchmark: what public docs say",
   "snapshot": {
@@ -10,7 +10,7 @@
     "data": "CC-BY-4.0",
     "code": "MIT"
   },
-  "disclaimer": "Scores measure vendor-published documentation, not product capability. not_found means unknown, not absent. Every score is a range: the lower bound counts unknown cells as 0, the upper bound as 1. Nothing was tested hands-on.",
+  "disclaimer": "Scores measure vendor-published documentation, not product capability. not_found means unknown, not absent. Every score is a range (worst and best case); the public evidence does not support ranking these platforms. Nothing was tested hands-on.",
   "llm_assisted": true,
   "documentation": {
     "method": "METHOD.md",
@@ -28,7 +28,7 @@
       "id": "vendor_states",
       "status": "vendor_states",
       "lower": 0.5,
-      "upper": 0.5
+      "upper": 1.0
     },
     {
       "id": "not_found",
@@ -886,7 +886,7 @@
       "accessed": "2026-11-08",
       "note": "AWS blog (Jun 2025) on its approach to the EU AI Act: evaluating how services help customers meet obligations while keeping AWS's own compliance; cites ISO 42001, service cards, guardrails; customers stay responsible for their use. Company-wide, Connect not named. Found in the gap pass via the AWS Responsible AI page.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "amazon_connect:aicaller",
@@ -1234,7 +1234,7 @@
       "source_type": null,
       "url": null,
       "accessed": "2026-11-08",
-      "note": "Only outbound answering-machine detection found (does not count); an A2A server endpoint exists for agent interoperability but no customer-agent declaration or AI-caller detection found. Queries: 'Cognigy detect AI agent caller personal AI agent synthetic voice detection'; 'Cognigy OR NiC Gap pass 2026-11-08: search unavailable (session cap), fetched docs llms.txt entries (only AMD in Dial verb).",
+      "note": "Only outbound answering-machine detection (does not count) and an A2A endpoint found in docs. External review 2026-11-08: press (CMSWire, 6 Oct 2026) names NiCE as a PAP partner in Meta's announcement, but two searches found no nice.com or cognigy.com page; press is not used for capabilities, so not_found stays.",
       "score_lower": 0.0,
       "score_upper": 1.0
     },
@@ -1292,7 +1292,7 @@
       "accessed": "2026-11-08",
       "note": "Utilities solution page says AI agents handle billing, payments and outage reports on chat, voice and email. The endpoint reference lists no email endpoint; docs show only a send-email node/tool.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "cognigy:ch_messaging",
@@ -1572,7 +1572,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (1 Oct 2026): Personal Agent Gateway flags likely personal agents in chat and voice using device, account and timing signals and routes self-identified agents to a dedicated channel; PACT builds on A2A plus OAuth 2.0, specification in progress.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:cert_iso27001",
@@ -1614,7 +1614,7 @@
       "accessed": "2026-11-08",
       "note": "Chat product page: agent conversations across web, mobile and messaging platforms.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:ch_email",
@@ -1628,7 +1628,7 @@
       "accessed": "2026-11-08",
       "note": "Email product page: agent drafts and handles email replies, connected to Intercom, Zendesk, Salesforce inboxes.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:ch_messaging",
@@ -1642,7 +1642,7 @@
       "accessed": "2026-11-08",
       "note": "Chat page says inbound requests are handled across web live chat, SMS, WhatsApp and more.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:ch_voice",
@@ -1656,7 +1656,7 @@
       "accessed": "2026-11-08",
       "note": "Voice product page: AI voice agent for phone conversations, 70+ languages with automatic detection and switching.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:deploy_model",
@@ -1670,7 +1670,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (Aug 2026): Agent Deployment Engineers work with Agent Product Managers and customers to build, test and improve agents. No self-serve sign-up found (only sign-in and demo request).",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:eval_judge",
@@ -1684,7 +1684,7 @@
       "accessed": "2026-11-08",
       "note": "Testing & QA page: an evaluation model judges each test and shows its rationale for pass or fail.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:eval_judge_cal",
@@ -1698,7 +1698,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (6 Jul 2025): LLM-as-judge scores responses; a subset is audited by human labellers to validate the judge. Internal practice; no customer-facing calibration feature or agreement metric described. Gap pass 2026-11-08: found via sitemap (search unavailable).",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:eval_regression",
@@ -1712,7 +1712,7 @@
       "accessed": "2026-11-08",
       "note": "Testing & QA page: CI/CD integration tests each agent version against regressions; scheduled recurring runs; stale tests auto-updated.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:eval_repeat",
@@ -1740,7 +1740,7 @@
       "accessed": "2026-11-08",
       "note": "Testing & QA page: Simulations, an integrated suite that runs test conversations across channels before launch and after updates; Duet auto-generates tests. Simulated personas not described in detail.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:handoff",
@@ -1754,7 +1754,7 @@
       "accessed": "2026-11-08",
       "note": "Voice page: calls pass to a human with a short conversation summary; email page: escalations route to humans with conversation context via ticketing integrations.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:lang_eu",
@@ -1796,7 +1796,7 @@
       "accessed": "2026-11-08",
       "note": "Watchtower page: always-on QA of AI and human conversations against plain-language criteria, rubric scoring, dashboards with drill-down to transcripts; overview page cites decision traces.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:pricing_model",
@@ -1810,7 +1810,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (10 Dec 2024) describes Decagon's two options: a fee per conversation or a higher fee per resolved conversation; escalations not charged. No pricing page (decagon.ai/pricing 404). Gap pass 2026-11-08: found via decagon.ai sitemap (search unavailable).",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:residency_eu",
@@ -1838,7 +1838,7 @@
       "accessed": "2026-11-08",
       "note": "Integrations page: SIP trunking to integrate existing telephony; connects to Amazon Connect and RingCentral for voice handoffs.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:tel_native",
@@ -1866,7 +1866,7 @@
       "accessed": "2026-11-08",
       "note": "Integrations page: self-serve APIs and custom tool integrations let the agent fetch data and trigger actions.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "decagon:tools_mcp",
@@ -1880,7 +1880,7 @@
       "accessed": "2026-11-08",
       "note": "Integrations page subtitle cites pre-built connectors, APIs and MCP support for data, actions and escalations; does not say client or server.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "elevenlabs:aiact",
@@ -1908,7 +1908,7 @@
       "accessed": "2026-11-08",
       "note": "Blog dated 9 Oct 2026: classifies caller audio as human or AI-generated in first seconds for routing rules; enterprise via forward deployed team. Joined PAP working group; support only planned.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "elevenlabs:cert_iso27001",
@@ -1922,7 +1922,7 @@
       "accessed": "2026-11-08",
       "note": "Enterprise agents page lists ISO 27001 with SOC 2 Type II, HIPAA, PCI DSS L1. Trust centre page content could not be read by the fetch tool.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "elevenlabs:cert_soc2",
@@ -1964,7 +1964,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (Aug 2026, updated Nov 2026) says the agent can triage and answer inbound tickets from email ticketing platforms (Zendesk; Intercom and Freshdesk in alpha). No dedicated email docs page found.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "elevenlabs:ch_messaging",
@@ -2188,7 +2188,7 @@
       "accessed": "2026-11-08",
       "note": "Core docs describe importing numbers bought in Twilio or Exotel or via SIP; only the separate Reception product (built on ElevenAgents) says it assigns a dedicated number, for US businesses.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "elevenlabs:tools_api",
@@ -2230,20 +2230,20 @@
       "accessed": "2026-11-08",
       "note": "Company-wide AI ethics page states Genesys builds AI features to comply with regulations including the EU AI Act; a blog adds that the platform gives customers tools for AI Act data-mapping duties. One-line commitment, no detail. Gap pass 2026-11-08: search unavailable (session cap), fetched genesys.com sitemap pages.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "genesys:aicaller",
       "platform_id": "genesys",
       "criterion_id": "aicaller",
       "dimension_id": "prod_gov",
-      "status": "not_found",
-      "value": null,
-      "source_type": null,
-      "url": null,
+      "status": "vendor_states",
+      "value": "PAP (co-developing; in development)",
+      "source_type": "blog",
+      "url": "https://www.genesys.com/blog/post/personal-ai-will-change-the-customer-relationship",
       "accessed": "2026-11-08",
-      "note": "No AI-caller detection or declared-agent protocol on fetched virtual agent pages; A2A connections are for the agent calling other agents. First pass without search. Gap pass 2026-11-08: search unavailable (session cap), fetched agentic overview and external agentic integrations pages (A2A, no AI-caller detection).",
-      "score_lower": 0.0,
+      "note": "Blog (6 Oct 2026): Genesys says it is developing the Personal Agent Protocol with Sierra, Meta and other partners and exploring how personal agents will reach businesses through Genesys Cloud; no detection method or availability date. Was not_found; changed after an external review 2026-11-08 (one search found this page).",
+      "score_lower": 0.5,
       "score_upper": 1.0
     },
     {
@@ -3644,7 +3644,7 @@
       "accessed": "2026-11-08",
       "note": "Conversational email product page says AI-powered chatbots can initially respond to consumers who message from email, alongside agents in one workspace.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "liveperson:ch_messaging",
@@ -3686,7 +3686,7 @@
       "accessed": "2026-11-08",
       "note": "Professional services page describes strategy, design, build and implementation teams; the developer centre header also links a free trial.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "liveperson:eval_judge",
@@ -4246,7 +4246,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (18 Sep 2026): Parloa says AMP falls in the limited-risk category, Art. 50 transparency applies, and AMP supports configurable AI disclosures; marking work in progress. Trust centre otherwise shows only a badge. Gap pass 2026-11-08: found via sitemap.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:aicaller",
@@ -4260,7 +4260,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (15 Oct 2026): middleware for personal AI agents being designed on open standards incl. A2A and Poppy (links to personalagentprotocol.org); limited design partnership, not generally available; no detection method described.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:cert_iso27001",
@@ -4302,7 +4302,7 @@
       "accessed": "2026-11-08",
       "note": "Conversation Infrastructure page: chat widget where customers can switch from typing to talking without losing context.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:ch_email",
@@ -4330,7 +4330,7 @@
       "accessed": "2026-11-08",
       "note": "Integrations page: Bird integration sends outbound messages and continues conversations across messaging channels; specific channels (WhatsApp, SMS) not named.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:ch_voice",
@@ -4344,7 +4344,7 @@
       "accessed": "2026-11-08",
       "note": "Platform page: design voice interactions in over 140 languages; voice AI agents for contact-centre calls.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:deploy_model",
@@ -4358,7 +4358,7 @@
       "accessed": "2026-11-08",
       "note": "FAQ: Parloa engineers, success teams and partners guide use-case definition, integrations, testing and rollout. A Jul 2025 blog adds TP as reseller and integrator. No self-serve sign-up found. Changed after external review 2026-11-08.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:eval_judge",
@@ -4372,7 +4372,7 @@
       "accessed": "2026-11-08",
       "note": "Parloa Lens page: AI evaluation scores tone, empathy, compliance, sentiment and detects scope violations, PII leaks, hallucinations; custom evaluations on live traffic.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:eval_judge_cal",
@@ -4400,7 +4400,7 @@
       "accessed": "2026-11-08",
       "note": "Blog: simulations and evaluations can run in the release pipeline and block failing releases; Performance Lab page describes identical tests run against two agent versions side by side.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:eval_repeat",
@@ -4428,7 +4428,7 @@
       "accessed": "2026-11-08",
       "note": "Performance Lab page: simulations at production scale before launch, blending historical transcripts and synthetic tests across scenarios, languages and channels.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:handoff",
@@ -4442,7 +4442,7 @@
       "accessed": "2026-11-08",
       "note": "Integrations page: Zendesk escalation attaches transcript and context; Salesforce Service Cloud transfers calls and chats with case context and summary pre-filled.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:lang_eu",
@@ -4484,7 +4484,7 @@
       "accessed": "2026-11-08",
       "note": "Parloa Lens page: full conversation replay, real-time metrics and alerts, consistent QA scoring with a CX score per conversation, BI export.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:pricing_model",
@@ -4512,7 +4512,7 @@
       "accessed": "2026-11-08",
       "note": "Parloa Labs post (1 Oct 2026) on Parloa Zones: the platform ran two regional stamps, app.parloa.com hosted in Germany and app.parloa.us in the US. Blog only; no documentation page names an EU region. Changed after external review 2026-11-08.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:tel_byoc",
@@ -4526,7 +4526,7 @@
       "accessed": "2026-11-08",
       "note": "Conversation Infrastructure page: direct SIP connectivity to telephony providers, CCaaS platforms, PBX/UC and WebRTC; integrations page names Genesys, Amazon Connect, Five9, Cisco, Avaya and others.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:tel_native",
@@ -4554,7 +4554,7 @@
       "accessed": "2026-11-08",
       "note": "Integrations page: agent executes order, billing and account actions against enterprise systems; APIs offered for automation.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "parloa:tools_mcp",
@@ -4568,7 +4568,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (2 Nov 2026): Parloa MCP server lets assistants such as Claude Code or Cursor review, edit, test and deploy Parloa agents. Integrations page also cites MCP for agent actions without stating direction.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "polyai:aiact",
@@ -4974,7 +4974,7 @@
       "accessed": "2026-11-08",
       "note": "Post by a Salesforce employee in a Salesforce-moderated group (Feb 2025): Agentforce Service Agent chat generally available in several languages.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "salesforce:ch_email",
@@ -5114,7 +5114,7 @@
       "accessed": "2026-11-08",
       "note": "Voice page: calls beyond the agent's scope transfer to a live person with conversation history and customer context.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "salesforce:lang_eu",
@@ -5128,7 +5128,7 @@
       "accessed": "2026-11-08",
       "note": "Voice page names English, French, Spanish, Italian, German, Portuguese (plus Japanese) and says many others; 6 EU official languages named.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "salesforce:lang_it",
@@ -5142,7 +5142,7 @@
       "accessed": "2026-11-08",
       "note": "Agentforce Voice page lists Italian among voice languages; a Salesforce community post (Feb 2025) lists Italian as GA for Service Agent chat in certain locales.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "salesforce:obs_qa",
@@ -5184,7 +5184,7 @@
       "accessed": "2026-11-08",
       "note": "Hyperforce page: paid EU Operating Zone stores and processes EU customer data within the EU. Page does not say whether Agentforce is covered.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "salesforce:tel_byoc",
@@ -5268,7 +5268,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (8 Oct 2026): fleming-1 scores caller audio in real time for signs of AI generation and flags likely AI callers; opt-in for Sierra voice agents; business decides response. Complements the Personal Agent Protocol (in development).",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:cert_iso27001",
@@ -5282,7 +5282,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (Jul 2025) says Sierra is certified to ISO 27001 and ISO 42001 by an accredited body. Trust centre (trust.sierra.ai) not readable by the fetch tool.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:cert_soc2",
@@ -5296,7 +5296,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (Sep 2026) on AIUC-1 says it complements Sierra's existing SOC 2 Type II attestation.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:ch_chat",
@@ -5310,7 +5310,7 @@
       "accessed": "2026-11-08",
       "note": "Channels page lists website chat and mobile app chat as agent channels.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:ch_email",
@@ -5324,7 +5324,7 @@
       "accessed": "2026-11-08",
       "note": "Channels page says the agent replies autonomously to customer emails.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:ch_messaging",
@@ -5338,7 +5338,7 @@
       "accessed": "2026-11-08",
       "note": "Channels page lists WhatsApp, Apple Business Chat and SMS as messaging channels.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:ch_voice",
@@ -5352,7 +5352,7 @@
       "accessed": "2026-11-08",
       "note": "Voice product page: the agent handles phone conversations, speaks over 55 languages and can switch language mid-call.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:deploy_model",
@@ -5366,7 +5366,7 @@
       "accessed": "2026-11-08",
       "note": "Blog describes a forward-deployed agent development team embedded with the customer; customers build with Agent SDK or no-code Agent Studio. No self-serve sign-up found.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:eval_judge",
@@ -5380,7 +5380,7 @@
       "accessed": "2026-11-08",
       "note": "Blog says an independent AI judge grades each simulated run on goal completion, SOP and brand adherence, and answer quality.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:eval_judge_cal",
@@ -5408,7 +5408,7 @@
       "accessed": "2026-11-08",
       "note": "Agent Studio page: build a test suite to catch regressions before releasing an agent version; simulations blog says releases can be gated in CI/CD.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:eval_repeat",
@@ -5436,7 +5436,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (Aug 2025) describes simulated users with different languages, tech comfort and tone; voice sims add synthetic voices and background noise.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:handoff",
@@ -5450,7 +5450,7 @@
       "accessed": "2026-11-08",
       "note": "Blog says every hand-off to staff includes an AI-generated summary; voice page says reps receive full conversation context.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:lang_eu",
@@ -5492,7 +5492,7 @@
       "accessed": "2026-11-08",
       "note": "Agent Studio page: real-time traces of decisions and tool calls, natural-language analytics (Explorer), knowledge-gap flags; voice calls recorded and transcribed per Sierra Speaks blog.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:pricing_model",
@@ -5506,7 +5506,7 @@
       "accessed": "2026-11-08",
       "note": "Blog on outcome-based pricing: charged per outcome (e.g. resolved conversation, saved cancellation); for routing or greeter interactions, payment based on conversation count. No public pricing page.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:residency_eu",
@@ -5534,7 +5534,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (Oct 2024) says agents integrate with any call center platform and can sit in front of or behind an existing IVR. No SIP or carrier details given.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:tel_native",
@@ -5562,7 +5562,7 @@
       "accessed": "2026-11-08",
       "note": "Agent SDK page says agents take actions by connecting securely to any internal or external system; Agent Studio page cites 40+ prebuilt integrations and custom integrations.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "sierra:tools_mcp",
@@ -5576,7 +5576,7 @@
       "accessed": "2026-11-08",
       "note": "Blog (Oct 2025) says agents built on Sierra are compatible with ChatGPT Apps via MCP (agent exposed over MCP). No statement found on the agent consuming customer MCP servers.",
       "score_lower": 0.5,
-      "score_upper": 0.5
+      "score_upper": 1.0
     },
     {
       "id": "vapi:aiact",
@@ -6258,6 +6258,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.8333,
       "upper": 1.0,
+      "width": 0.1667,
       "coverage": 0.8333,
       "n_criteria": 6,
       "n_documented": 5,
@@ -6271,6 +6272,7 @@
       "dimension_id": "prod_gov",
       "lower": 0.625,
       "upper": 1.0,
+      "width": 0.375,
       "coverage": 0.625,
       "n_criteria": 8,
       "n_documented": 5,
@@ -6284,6 +6286,7 @@
       "dimension_id": "voice_eu",
       "lower": 0.9,
       "upper": 1.0,
+      "width": 0.1,
       "coverage": 0.9,
       "n_criteria": 10,
       "n_documented": 9,
@@ -6297,6 +6300,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.6667,
       "upper": 1.0,
+      "width": 0.3333,
       "coverage": 0.6667,
       "n_criteria": 6,
       "n_documented": 4,
@@ -6310,6 +6314,7 @@
       "dimension_id": "prod_gov",
       "lower": 0.875,
       "upper": 1.0,
+      "width": 0.125,
       "coverage": 0.875,
       "n_criteria": 8,
       "n_documented": 7,
@@ -6322,7 +6327,8 @@
       "platform_id": "amazon_connect",
       "dimension_id": "voice_eu",
       "lower": 0.75,
-      "upper": 0.95,
+      "upper": 1.0,
+      "width": 0.25,
       "coverage": 0.8,
       "n_criteria": 10,
       "n_documented": 7,
@@ -6336,6 +6342,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.8333,
       "upper": 1.0,
+      "width": 0.1667,
       "coverage": 0.8333,
       "n_criteria": 6,
       "n_documented": 5,
@@ -6349,6 +6356,7 @@
       "dimension_id": "prod_gov",
       "lower": 0.625,
       "upper": 1.0,
+      "width": 0.375,
       "coverage": 0.625,
       "n_criteria": 8,
       "n_documented": 5,
@@ -6361,7 +6369,8 @@
       "platform_id": "cognigy",
       "dimension_id": "voice_eu",
       "lower": 0.75,
-      "upper": 0.95,
+      "upper": 1.0,
+      "width": 0.25,
       "coverage": 0.8,
       "n_criteria": 10,
       "n_documented": 7,
@@ -6374,7 +6383,8 @@
       "platform_id": "decagon",
       "dimension_id": "eval_qa",
       "lower": 0.4167,
-      "upper": 0.5833,
+      "upper": 1.0,
+      "width": 0.5833,
       "coverage": 0.8333,
       "n_criteria": 6,
       "n_documented": 0,
@@ -6387,7 +6397,8 @@
       "platform_id": "decagon",
       "dimension_id": "prod_gov",
       "lower": 0.625,
-      "upper": 0.625,
+      "upper": 1.0,
+      "width": 0.375,
       "coverage": 1.0,
       "n_criteria": 8,
       "n_documented": 2,
@@ -6400,7 +6411,8 @@
       "platform_id": "decagon",
       "dimension_id": "voice_eu",
       "lower": 0.25,
-      "upper": 0.75,
+      "upper": 1.0,
+      "width": 0.75,
       "coverage": 0.5,
       "n_criteria": 10,
       "n_documented": 0,
@@ -6414,6 +6426,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.8333,
       "upper": 1.0,
+      "width": 0.1667,
       "coverage": 0.8333,
       "n_criteria": 6,
       "n_documented": 5,
@@ -6426,7 +6439,8 @@
       "platform_id": "elevenlabs",
       "dimension_id": "prod_gov",
       "lower": 0.875,
-      "upper": 0.875,
+      "upper": 1.0,
+      "width": 0.125,
       "coverage": 1.0,
       "n_criteria": 8,
       "n_documented": 6,
@@ -6439,7 +6453,8 @@
       "platform_id": "elevenlabs",
       "dimension_id": "voice_eu",
       "lower": 0.8,
-      "upper": 0.9,
+      "upper": 1.0,
+      "width": 0.2,
       "coverage": 0.9,
       "n_criteria": 10,
       "n_documented": 7,
@@ -6453,6 +6468,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.5,
       "upper": 1.0,
+      "width": 0.5,
       "coverage": 0.5,
       "n_criteria": 6,
       "n_documented": 3,
@@ -6464,13 +6480,14 @@
       "id": "genesys:prod_gov",
       "platform_id": "genesys",
       "dimension_id": "prod_gov",
-      "lower": 0.75,
+      "lower": 0.8125,
       "upper": 1.0,
-      "coverage": 0.75,
+      "width": 0.1875,
+      "coverage": 0.875,
       "n_criteria": 8,
       "n_documented": 6,
-      "n_vendor_states": 0,
-      "n_not_found": 2,
+      "n_vendor_states": 1,
+      "n_not_found": 1,
       "n_not_applicable": 0
     },
     {
@@ -6478,7 +6495,8 @@
       "platform_id": "genesys",
       "dimension_id": "voice_eu",
       "lower": 0.85,
-      "upper": 0.95,
+      "upper": 1.0,
+      "width": 0.15,
       "coverage": 0.9,
       "n_criteria": 10,
       "n_documented": 8,
@@ -6492,6 +6510,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.8333,
       "upper": 1.0,
+      "width": 0.1667,
       "coverage": 0.8333,
       "n_criteria": 6,
       "n_documented": 5,
@@ -6505,6 +6524,7 @@
       "dimension_id": "prod_gov",
       "lower": 0.875,
       "upper": 1.0,
+      "width": 0.125,
       "coverage": 0.875,
       "n_criteria": 8,
       "n_documented": 7,
@@ -6518,6 +6538,7 @@
       "dimension_id": "voice_eu",
       "lower": 0.9,
       "upper": 1.0,
+      "width": 0.1,
       "coverage": 0.9,
       "n_criteria": 10,
       "n_documented": 9,
@@ -6531,6 +6552,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.6667,
       "upper": 1.0,
+      "width": 0.3333,
       "coverage": 0.6667,
       "n_criteria": 6,
       "n_documented": 4,
@@ -6544,6 +6566,7 @@
       "dimension_id": "prod_gov",
       "lower": 0.875,
       "upper": 1.0,
+      "width": 0.125,
       "coverage": 0.875,
       "n_criteria": 8,
       "n_documented": 7,
@@ -6557,6 +6580,7 @@
       "dimension_id": "voice_eu",
       "lower": 1.0,
       "upper": 1.0,
+      "width": 0.0,
       "coverage": 1.0,
       "n_criteria": 10,
       "n_documented": 10,
@@ -6570,6 +6594,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.6667,
       "upper": 1.0,
+      "width": 0.3333,
       "coverage": 0.6667,
       "n_criteria": 6,
       "n_documented": 4,
@@ -6583,6 +6608,7 @@
       "dimension_id": "prod_gov",
       "lower": 0.75,
       "upper": 1.0,
+      "width": 0.25,
       "coverage": 0.75,
       "n_criteria": 8,
       "n_documented": 6,
@@ -6596,6 +6622,7 @@
       "dimension_id": "voice_eu",
       "lower": 0.7,
       "upper": 1.0,
+      "width": 0.3,
       "coverage": 0.7,
       "n_criteria": 10,
       "n_documented": 7,
@@ -6609,6 +6636,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.5,
       "upper": 1.0,
+      "width": 0.5,
       "coverage": 0.5,
       "n_criteria": 6,
       "n_documented": 3,
@@ -6621,7 +6649,8 @@
       "platform_id": "liveperson",
       "dimension_id": "prod_gov",
       "lower": 0.4375,
-      "upper": 0.9375,
+      "upper": 1.0,
+      "width": 0.5625,
       "coverage": 0.5,
       "n_criteria": 8,
       "n_documented": 3,
@@ -6634,7 +6663,8 @@
       "platform_id": "liveperson",
       "dimension_id": "voice_eu",
       "lower": 0.75,
-      "upper": 0.95,
+      "upper": 1.0,
+      "width": 0.25,
       "coverage": 0.8,
       "n_criteria": 10,
       "n_documented": 7,
@@ -6648,6 +6678,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.8333,
       "upper": 1.0,
+      "width": 0.1667,
       "coverage": 0.8333,
       "n_criteria": 6,
       "n_documented": 5,
@@ -6661,6 +6692,7 @@
       "dimension_id": "prod_gov",
       "lower": 0.875,
       "upper": 1.0,
+      "width": 0.125,
       "coverage": 0.875,
       "n_criteria": 8,
       "n_documented": 7,
@@ -6674,6 +6706,7 @@
       "dimension_id": "voice_eu",
       "lower": 1.0,
       "upper": 1.0,
+      "width": 0.0,
       "coverage": 1.0,
       "n_criteria": 10,
       "n_documented": 10,
@@ -6686,7 +6719,8 @@
       "platform_id": "parloa",
       "dimension_id": "eval_qa",
       "lower": 0.3333,
-      "upper": 0.6667,
+      "upper": 1.0,
+      "width": 0.6667,
       "coverage": 0.6667,
       "n_criteria": 6,
       "n_documented": 0,
@@ -6699,7 +6733,8 @@
       "platform_id": "parloa",
       "dimension_id": "prod_gov",
       "lower": 0.6875,
-      "upper": 0.6875,
+      "upper": 1.0,
+      "width": 0.3125,
       "coverage": 1.0,
       "n_criteria": 8,
       "n_documented": 3,
@@ -6712,7 +6747,8 @@
       "platform_id": "parloa",
       "dimension_id": "voice_eu",
       "lower": 0.3,
-      "upper": 0.7,
+      "upper": 1.0,
+      "width": 0.7,
       "coverage": 0.6,
       "n_criteria": 10,
       "n_documented": 0,
@@ -6726,6 +6762,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.8333,
       "upper": 1.0,
+      "width": 0.1667,
       "coverage": 0.8333,
       "n_criteria": 6,
       "n_documented": 5,
@@ -6739,6 +6776,7 @@
       "dimension_id": "prod_gov",
       "lower": 0.875,
       "upper": 1.0,
+      "width": 0.125,
       "coverage": 0.875,
       "n_criteria": 8,
       "n_documented": 7,
@@ -6752,6 +6790,7 @@
       "dimension_id": "voice_eu",
       "lower": 0.8,
       "upper": 1.0,
+      "width": 0.2,
       "coverage": 0.8,
       "n_criteria": 10,
       "n_documented": 8,
@@ -6765,6 +6804,7 @@
       "dimension_id": "eval_qa",
       "lower": 0.5,
       "upper": 1.0,
+      "width": 0.5,
       "coverage": 0.5,
       "n_criteria": 6,
       "n_documented": 3,
@@ -6777,7 +6817,8 @@
       "platform_id": "salesforce",
       "dimension_id": "prod_gov",
       "lower": 0.8125,
-      "upper": 0.9375,
+      "upper": 1.0,
+      "width": 0.1875,
       "coverage": 0.875,
       "n_criteria": 8,
       "n_documented": 6,
@@ -6790,7 +6831,8 @@
       "platform_id": "salesforce",
       "dimension_id": "voice_eu",
       "lower": 0.5,
-      "upper": 0.8,
+      "upper": 1.0,
+      "width": 0.5,
       "coverage": 0.7,
       "n_criteria": 10,
       "n_documented": 3,
@@ -6803,7 +6845,8 @@
       "platform_id": "sierra",
       "dimension_id": "eval_qa",
       "lower": 0.3333,
-      "upper": 0.6667,
+      "upper": 1.0,
+      "width": 0.6667,
       "coverage": 0.6667,
       "n_criteria": 6,
       "n_documented": 0,
@@ -6816,7 +6859,8 @@
       "platform_id": "sierra",
       "dimension_id": "prod_gov",
       "lower": 0.5,
-      "upper": 0.5,
+      "upper": 1.0,
+      "width": 0.5,
       "coverage": 1.0,
       "n_criteria": 8,
       "n_documented": 0,
@@ -6829,7 +6873,8 @@
       "platform_id": "sierra",
       "dimension_id": "voice_eu",
       "lower": 0.25,
-      "upper": 0.75,
+      "upper": 1.0,
+      "width": 0.75,
       "coverage": 0.5,
       "n_criteria": 10,
       "n_documented": 0,
@@ -6843,6 +6888,7 @@
       "dimension_id": "eval_qa",
       "lower": 1.0,
       "upper": 1.0,
+      "width": 0.0,
       "coverage": 1.0,
       "n_criteria": 6,
       "n_documented": 6,
@@ -6856,6 +6902,7 @@
       "dimension_id": "prod_gov",
       "lower": 0.75,
       "upper": 1.0,
+      "width": 0.25,
       "coverage": 0.75,
       "n_criteria": 8,
       "n_documented": 6,
@@ -6869,6 +6916,7 @@
       "dimension_id": "voice_eu",
       "lower": 0.8,
       "upper": 1.0,
+      "width": 0.2,
       "coverage": 0.8,
       "n_criteria": 10,
       "n_documented": 8,
@@ -6882,6 +6930,7 @@
       "dimension_id": "eval_qa",
       "lower": 1.0,
       "upper": 1.0,
+      "width": 0.0,
       "coverage": 1.0,
       "n_criteria": 6,
       "n_documented": 6,
@@ -6895,6 +6944,7 @@
       "dimension_id": "prod_gov",
       "lower": 0.875,
       "upper": 1.0,
+      "width": 0.125,
       "coverage": 0.875,
       "n_criteria": 8,
       "n_documented": 7,
@@ -6908,6 +6958,7 @@
       "dimension_id": "voice_eu",
       "lower": 1.0,
       "upper": 1.0,
+      "width": 0.0,
       "coverage": 1.0,
       "n_criteria": 10,
       "n_documented": 10,
@@ -6922,340 +6973,255 @@
       "platform_id": "ada",
       "lower": 0.7861,
       "upper": 1.0,
+      "width": 0.2139,
       "coverage": 0.7861,
-      "cells_with_evidence": 19,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 14,
-      "rank_lower_default": 8,
-      "rank_lower_min": 7,
-      "rank_lower_max": 9,
-      "rank_upper_default": 1,
-      "rank_upper_min": 1,
-      "rank_upper_max": 1,
-      "band_min": 1,
-      "band_max": 1
+      "cells_documented": 19,
+      "cells_vendor_states": 0,
+      "cells_no_evidence": 5,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 2,
+      "rank_interval_width_scenarios_upper": 0
     },
     {
       "id": "amazon_connect:index",
       "platform_id": "amazon_connect",
       "lower": 0.7639,
-      "upper": 0.9833,
+      "upper": 1.0,
+      "width": 0.2361,
       "coverage": 0.7806,
-      "cells_with_evidence": 19,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 14,
-      "rank_lower_default": 9,
-      "rank_lower_min": 8,
-      "rank_lower_max": 11,
-      "rank_upper_default": 9,
-      "rank_upper_min": 1,
-      "rank_upper_max": 10,
-      "band_min": 1,
-      "band_max": 2
+      "cells_documented": 18,
+      "cells_vendor_states": 1,
+      "cells_no_evidence": 5,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 3,
+      "rank_interval_width_scenarios_upper": 8
     },
     {
       "id": "cognigy:index",
       "platform_id": "cognigy",
       "lower": 0.7361,
-      "upper": 0.9833,
+      "upper": 1.0,
+      "width": 0.2639,
       "coverage": 0.7528,
-      "cells_with_evidence": 18,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 14,
-      "rank_lower_default": 10,
-      "rank_lower_min": 8,
-      "rank_lower_max": 12,
-      "rank_upper_default": 9,
-      "rank_upper_min": 1,
-      "rank_upper_max": 11,
-      "band_min": 1,
-      "band_max": 2
+      "cells_documented": 17,
+      "cells_vendor_states": 1,
+      "cells_no_evidence": 6,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 5,
+      "rank_interval_width_scenarios_upper": 8
     },
     {
       "id": "decagon:index",
       "platform_id": "decagon",
       "lower": 0.4306,
-      "upper": 0.6528,
+      "upper": 1.0,
+      "width": 0.5694,
       "coverage": 0.7778,
-      "cells_with_evidence": 18,
       "cells_total": 24,
-      "band": 3,
-      "possible_rank_best": 13,
-      "possible_rank_worst": 17,
-      "rank_lower_default": 16,
-      "rank_lower_min": 10,
-      "rank_lower_max": 16,
-      "rank_upper_default": 16,
-      "rank_upper_min": 1,
-      "rank_upper_max": 17,
-      "band_min": 1,
-      "band_max": 3
+      "cells_documented": 2,
+      "cells_vendor_states": 16,
+      "cells_no_evidence": 6,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 6,
+      "rank_interval_width_scenarios_upper": 15
     },
     {
       "id": "elevenlabs:index",
       "platform_id": "elevenlabs",
       "lower": 0.8361,
-      "upper": 0.925,
+      "upper": 1.0,
+      "width": 0.1639,
       "coverage": 0.9111,
-      "cells_with_evidence": 22,
       "cells_total": 24,
-      "band": 2,
-      "possible_rank_best": 2,
-      "possible_rank_worst": 14,
-      "rank_lower_default": 6,
-      "rank_lower_min": 2,
-      "rank_lower_max": 8,
-      "rank_upper_default": 13,
-      "rank_upper_min": 1,
-      "rank_upper_max": 14,
-      "band_min": 1,
-      "band_max": 2
+      "cells_documented": 18,
+      "cells_vendor_states": 4,
+      "cells_no_evidence": 2,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 6,
+      "rank_interval_width_scenarios_upper": 12
     },
     {
       "id": "genesys:index",
       "platform_id": "genesys",
-      "lower": 0.7,
-      "upper": 0.9833,
-      "coverage": 0.7167,
-      "cells_with_evidence": 18,
+      "lower": 0.7208,
+      "upper": 1.0,
+      "width": 0.2792,
+      "coverage": 0.7583,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 14,
-      "rank_lower_default": 12,
-      "rank_lower_min": 10,
-      "rank_lower_max": 14,
-      "rank_upper_default": 9,
-      "rank_upper_min": 1,
-      "rank_upper_max": 10,
-      "band_min": 1,
-      "band_max": 2
+      "cells_documented": 17,
+      "cells_vendor_states": 2,
+      "cells_no_evidence": 5,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 3,
+      "rank_interval_width_scenarios_upper": 10
     },
     {
       "id": "google_ces:index",
       "platform_id": "google_ces",
       "lower": 0.8694,
       "upper": 1.0,
+      "width": 0.1306,
       "coverage": 0.8694,
-      "cells_with_evidence": 21,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 14,
-      "rank_lower_default": 3,
-      "rank_lower_min": 2,
-      "rank_lower_max": 5,
-      "rank_upper_default": 1,
-      "rank_upper_min": 1,
-      "rank_upper_max": 1,
-      "band_min": 1,
-      "band_max": 1
+      "cells_documented": 21,
+      "cells_vendor_states": 0,
+      "cells_no_evidence": 3,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 3,
+      "rank_interval_width_scenarios_upper": 0
     },
     {
       "id": "intercom:index",
       "platform_id": "intercom",
       "lower": 0.8472,
       "upper": 1.0,
+      "width": 0.1528,
       "coverage": 0.8472,
-      "cells_with_evidence": 21,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 14,
-      "rank_lower_default": 5,
-      "rank_lower_min": 2,
-      "rank_lower_max": 7,
-      "rank_upper_default": 1,
-      "rank_upper_min": 1,
-      "rank_upper_max": 1,
-      "band_min": 1,
-      "band_max": 1
+      "cells_documented": 21,
+      "cells_vendor_states": 0,
+      "cells_no_evidence": 3,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 5,
+      "rank_interval_width_scenarios_upper": 0
     },
     {
       "id": "koreai:index",
       "platform_id": "koreai",
       "lower": 0.7056,
       "upper": 1.0,
+      "width": 0.2944,
       "coverage": 0.7056,
-      "cells_with_evidence": 17,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 14,
-      "rank_lower_default": 11,
-      "rank_lower_min": 10,
-      "rank_lower_max": 15,
-      "rank_upper_default": 1,
-      "rank_upper_min": 1,
-      "rank_upper_max": 1,
-      "band_min": 1,
-      "band_max": 1
+      "cells_documented": 17,
+      "cells_vendor_states": 0,
+      "cells_no_evidence": 7,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 5,
+      "rank_interval_width_scenarios_upper": 0
     },
     {
       "id": "liveperson:index",
       "platform_id": "liveperson",
       "lower": 0.5625,
-      "upper": 0.9625,
+      "upper": 1.0,
+      "width": 0.4375,
       "coverage": 0.6,
-      "cells_with_evidence": 15,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 17,
-      "rank_lower_default": 14,
-      "rank_lower_min": 13,
-      "rank_lower_max": 17,
-      "rank_upper_default": 12,
-      "rank_upper_min": 1,
-      "rank_upper_max": 12,
-      "band_min": 1,
-      "band_max": 2
+      "cells_documented": 13,
+      "cells_vendor_states": 2,
+      "cells_no_evidence": 9,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 4,
+      "rank_interval_width_scenarios_upper": 10
     },
     {
       "id": "microsoft:index",
       "platform_id": "microsoft",
       "lower": 0.9028,
       "upper": 1.0,
+      "width": 0.0972,
       "coverage": 0.9028,
-      "cells_with_evidence": 22,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 14,
-      "rank_lower_default": 2,
-      "rank_lower_min": 1,
-      "rank_lower_max": 3,
-      "rank_upper_default": 1,
-      "rank_upper_min": 1,
-      "rank_upper_max": 1,
-      "band_min": 1,
-      "band_max": 1
+      "cells_documented": 22,
+      "cells_vendor_states": 0,
+      "cells_no_evidence": 2,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 2,
+      "rank_interval_width_scenarios_upper": 0
     },
     {
       "id": "parloa:index",
       "platform_id": "parloa",
       "lower": 0.4403,
-      "upper": 0.6847,
+      "upper": 1.0,
+      "width": 0.5597,
       "coverage": 0.7556,
-      "cells_with_evidence": 18,
       "cells_total": 24,
-      "band": 3,
-      "possible_rank_best": 13,
-      "possible_rank_worst": 17,
-      "rank_lower_default": 15,
-      "rank_lower_min": 11,
-      "rank_lower_max": 16,
-      "rank_upper_default": 15,
-      "rank_upper_min": 1,
-      "rank_upper_max": 15,
-      "band_min": 1,
-      "band_max": 3
+      "cells_documented": 3,
+      "cells_vendor_states": 15,
+      "cells_no_evidence": 6,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 4,
+      "rank_interval_width_scenarios_upper": 14
     },
     {
       "id": "polyai:index",
       "platform_id": "polyai",
       "lower": 0.8361,
       "upper": 1.0,
+      "width": 0.1639,
       "coverage": 0.8361,
-      "cells_with_evidence": 20,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 14,
-      "rank_lower_default": 6,
-      "rank_lower_min": 3,
-      "rank_lower_max": 7,
-      "rank_upper_default": 1,
-      "rank_upper_min": 1,
-      "rank_upper_max": 1,
-      "band_min": 1,
-      "band_max": 1
+      "cells_documented": 20,
+      "cells_vendor_states": 0,
+      "cells_no_evidence": 4,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 4,
+      "rank_interval_width_scenarios_upper": 0
     },
     {
       "id": "salesforce:index",
       "platform_id": "salesforce",
       "lower": 0.6042,
-      "upper": 0.9125,
+      "upper": 1.0,
+      "width": 0.3958,
       "coverage": 0.6917,
-      "cells_with_evidence": 17,
       "cells_total": 24,
-      "band": 2,
-      "possible_rank_best": 2,
-      "possible_rank_worst": 17,
-      "rank_lower_default": 13,
-      "rank_lower_min": 13,
-      "rank_lower_max": 16,
-      "rank_upper_default": 14,
-      "rank_upper_min": 1,
-      "rank_upper_max": 14,
-      "band_min": 1,
-      "band_max": 2
+      "cells_documented": 12,
+      "cells_vendor_states": 5,
+      "cells_no_evidence": 7,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 3,
+      "rank_interval_width_scenarios_upper": 13
     },
     {
       "id": "sierra:index",
       "platform_id": "sierra",
       "lower": 0.3611,
-      "upper": 0.6389,
+      "upper": 1.0,
+      "width": 0.6389,
       "coverage": 0.7222,
-      "cells_with_evidence": 17,
       "cells_total": 24,
-      "band": 3,
-      "possible_rank_best": 13,
-      "possible_rank_worst": 17,
-      "rank_lower_default": 17,
-      "rank_lower_min": 13,
-      "rank_lower_max": 17,
-      "rank_upper_default": 17,
-      "rank_upper_min": 1,
-      "rank_upper_max": 17,
-      "band_min": 1,
-      "band_max": 3
+      "cells_documented": 0,
+      "cells_vendor_states": 17,
+      "cells_no_evidence": 7,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 3,
+      "rank_interval_width_scenarios_upper": 16
     },
     {
       "id": "vapi:index",
       "platform_id": "vapi",
       "lower": 0.85,
       "upper": 1.0,
+      "width": 0.15,
       "coverage": 0.85,
-      "cells_with_evidence": 20,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 14,
-      "rank_lower_default": 4,
-      "rank_lower_min": 2,
-      "rank_lower_max": 7,
-      "rank_upper_default": 1,
-      "rank_upper_min": 1,
-      "rank_upper_max": 1,
-      "band_min": 1,
-      "band_max": 1
+      "cells_documented": 20,
+      "cells_vendor_states": 0,
+      "cells_no_evidence": 4,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 5,
+      "rank_interval_width_scenarios_upper": 0
     },
     {
       "id": "zendesk:index",
       "platform_id": "zendesk",
       "lower": 0.9583,
       "upper": 1.0,
+      "width": 0.0417,
       "coverage": 0.9583,
-      "cells_with_evidence": 23,
       "cells_total": 24,
-      "band": 1,
-      "possible_rank_best": 1,
-      "possible_rank_worst": 12,
-      "rank_lower_default": 1,
-      "rank_lower_min": 1,
-      "rank_lower_max": 1,
-      "rank_upper_default": 1,
-      "rank_upper_min": 1,
-      "rank_upper_max": 1,
-      "band_min": 1,
-      "band_max": 1
+      "cells_documented": 23,
+      "cells_vendor_states": 0,
+      "cells_no_evidence": 1,
+      "rank_interval_width_missing_data": 16,
+      "rank_interval_width_scenarios_lower": 0,
+      "rank_interval_width_scenarios_upper": 0
     }
   ],
   "scenarios": [
@@ -7268,8 +7234,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": null,
+      "band_count": 1,
       "max_rank_shift_lower": 0,
       "max_rank_shift_upper": 0
     },
@@ -7282,10 +7250,12 @@
         "prod_gov": 0.25,
         "voice_eu": 0.25
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": null,
+      "band_count": 1,
       "max_rank_shift_lower": 2,
-      "max_rank_shift_upper": 1
+      "max_rank_shift_upper": 0
     },
     {
       "id": "w_prod_gov",
@@ -7296,10 +7266,12 @@
         "prod_gov": 0.5,
         "voice_eu": 0.25
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": null,
+      "band_count": 1,
       "max_rank_shift_lower": 3,
-      "max_rank_shift_upper": 1
+      "max_rank_shift_upper": 0
     },
     {
       "id": "w_voice_eu",
@@ -7310,8 +7282,10 @@
         "prod_gov": 0.25,
         "voice_eu": 0.5
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": null,
+      "band_count": 1,
       "max_rank_shift_lower": 2,
       "max_rank_shift_upper": 0
     },
@@ -7324,38 +7298,60 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.4167
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": null,
+      "band_count": 1,
       "max_rank_shift_lower": 2,
       "max_rank_shift_upper": 0
     },
     {
-      "id": "v_0",
+      "id": "v_half_half",
       "kind": "value_table",
-      "label": "vendor_states = 0",
+      "label": "vendor_states = 0.5 at both bounds (rule before change 8; not monotone)",
       "weights": {
         "eval_qa": 0.3333,
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.0,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 0.5,
       "dropped_criterion_id": null,
-      "max_rank_shift_lower": 2,
-      "max_rank_shift_upper": 0
-    },
-    {
-      "id": "v_1",
-      "kind": "value_table",
-      "label": "vendor_states = 1",
-      "weights": {
-        "eval_qa": 0.3333,
-        "prod_gov": 0.3333,
-        "voice_eu": 0.3333
-      },
-      "vendor_states_value": 1.0,
-      "dropped_criterion_id": null,
-      "max_rank_shift_lower": 6,
+      "band_count": 3,
+      "max_rank_shift_lower": 0,
       "max_rank_shift_upper": 16
+    },
+    {
+      "id": "v_unknown",
+      "kind": "value_table",
+      "label": "vendor_states treated as unknown (0 to 1)",
+      "weights": {
+        "eval_qa": 0.3333,
+        "prod_gov": 0.3333,
+        "voice_eu": 0.3333
+      },
+      "vendor_states_lower": 0.0,
+      "vendor_states_upper": 1.0,
+      "dropped_criterion_id": null,
+      "band_count": 1,
+      "max_rank_shift_lower": 2,
+      "max_rank_shift_upper": 0
+    },
+    {
+      "id": "v_one",
+      "kind": "value_table",
+      "label": "vendor_states = 1 (claims count as documentation)",
+      "weights": {
+        "eval_qa": 0.3333,
+        "prod_gov": 0.3333,
+        "voice_eu": 0.3333
+      },
+      "vendor_states_lower": 1.0,
+      "vendor_states_upper": 1.0,
+      "dropped_criterion_id": null,
+      "band_count": 1,
+      "max_rank_shift_lower": 6,
+      "max_rank_shift_upper": 0
     },
     {
       "id": "loo_eval_sim",
@@ -7366,9 +7362,11 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "eval_sim",
-      "max_rank_shift_lower": 2,
+      "band_count": 1,
+      "max_rank_shift_lower": 1,
       "max_rank_shift_upper": 0
     },
     {
@@ -7380,8 +7378,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "eval_regression",
+      "band_count": 1,
       "max_rank_shift_lower": 2,
       "max_rank_shift_upper": 0
     },
@@ -7394,8 +7394,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "eval_repeat",
+      "band_count": 1,
       "max_rank_shift_lower": 2,
       "max_rank_shift_upper": 0
     },
@@ -7408,8 +7410,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "eval_judge",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
       "max_rank_shift_upper": 0
     },
@@ -7422,8 +7426,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "eval_judge_cal",
+      "band_count": 1,
       "max_rank_shift_lower": 4,
       "max_rank_shift_upper": 0
     },
@@ -7436,8 +7442,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "obs_qa",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
       "max_rank_shift_upper": 0
     },
@@ -7450,8 +7458,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "tools_api",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
       "max_rank_shift_upper": 0
     },
@@ -7464,8 +7474,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "tools_mcp",
+      "band_count": 1,
       "max_rank_shift_lower": 2,
       "max_rank_shift_upper": 0
     },
@@ -7478,10 +7490,12 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "handoff",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
-      "max_rank_shift_upper": 1
+      "max_rank_shift_upper": 0
     },
     {
       "id": "loo_aicaller",
@@ -7492,8 +7506,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "aicaller",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
       "max_rank_shift_upper": 0
     },
@@ -7506,10 +7522,12 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "cert_iso27001",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
-      "max_rank_shift_upper": 1
+      "max_rank_shift_upper": 0
     },
     {
       "id": "loo_cert_soc2",
@@ -7520,10 +7538,12 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "cert_soc2",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
-      "max_rank_shift_upper": 1
+      "max_rank_shift_upper": 0
     },
     {
       "id": "loo_pricing_model",
@@ -7534,8 +7554,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "pricing_model",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
       "max_rank_shift_upper": 0
     },
@@ -7548,10 +7570,12 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "deploy_model",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
-      "max_rank_shift_upper": 3
+      "max_rank_shift_upper": 0
     },
     {
       "id": "loo_ch_voice",
@@ -7562,8 +7586,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "ch_voice",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
       "max_rank_shift_upper": 0
     },
@@ -7576,10 +7602,12 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "ch_chat",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
-      "max_rank_shift_upper": 1
+      "max_rank_shift_upper": 0
     },
     {
       "id": "loo_ch_email",
@@ -7590,10 +7618,12 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "ch_email",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
-      "max_rank_shift_upper": 8
+      "max_rank_shift_upper": 0
     },
     {
       "id": "loo_ch_messaging",
@@ -7604,8 +7634,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "ch_messaging",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
       "max_rank_shift_upper": 0
     },
@@ -7618,8 +7650,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "tel_native",
+      "band_count": 1,
       "max_rank_shift_lower": 2,
       "max_rank_shift_upper": 0
     },
@@ -7632,8 +7666,10 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "tel_byoc",
+      "band_count": 1,
       "max_rank_shift_lower": 1,
       "max_rank_shift_upper": 0
     },
@@ -7646,10 +7682,12 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "lang_it",
-      "max_rank_shift_lower": 1,
-      "max_rank_shift_upper": 1
+      "band_count": 1,
+      "max_rank_shift_lower": 2,
+      "max_rank_shift_upper": 0
     },
     {
       "id": "loo_lang_eu",
@@ -7660,10 +7698,12 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "lang_eu",
-      "max_rank_shift_lower": 1,
-      "max_rank_shift_upper": 1
+      "band_count": 1,
+      "max_rank_shift_lower": 2,
+      "max_rank_shift_upper": 0
     },
     {
       "id": "loo_residency_eu",
@@ -7674,10 +7714,12 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "residency_eu",
+      "band_count": 1,
       "max_rank_shift_lower": 3,
-      "max_rank_shift_upper": 1
+      "max_rank_shift_upper": 0
     },
     {
       "id": "loo_aiact",
@@ -7688,18 +7730,22 @@
         "prod_gov": 0.3333,
         "voice_eu": 0.3333
       },
-      "vendor_states_value": 0.5,
+      "vendor_states_lower": 0.5,
+      "vendor_states_upper": 1.0,
       "dropped_criterion_id": "aiact",
+      "band_count": 1,
       "max_rank_shift_lower": 2,
-      "max_rank_shift_upper": 8
+      "max_rank_shift_upper": 0
     }
   ],
   "summary": {
     "platform_count": 17,
     "criterion_count": 24,
     "cell_count": 408,
-    "overlapping_pairs": 98,
+    "value_table_monotone": true,
+    "overlapping_pairs": 136,
     "platform_pairs": 136,
+    "band_count": 1,
     "rule_a_met": false,
     "rule_b_met": false,
     "ranking_published": false

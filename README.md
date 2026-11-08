@@ -10,6 +10,16 @@ not found in public pages with the search procedure in [METHOD.md](METHOD.md). I
 capability is absent. A cell marked "documented" means the vendor documents it, not that it works as
 described.
 
+**Three numbers.**
+
+- **408 cells** (17 platforms x 24 criteria): 263 documented in vendor docs, 63 stated only on
+  marketing, blog or press pages, 82 not found.
+- **136 of 136** pairs of platforms have overlapping score ranges. Under a scoring rule in which
+  publishing more never lowers a score, the public evidence does not separate the 17 platforms, so
+  no ranking is published.
+- **0 of 17** platforms document how they handle AI callers in product docs; 5 announce something in
+  posts dated October 2026.
+
 - Snapshot: pages accessed on 2026-11-08.
 - Platforms (17): Ada, Amazon Connect, Cognigy (NICE), Decagon, ElevenAgents (ElevenLabs), Fin
   (formerly Intercom), Genesys Cloud AI, Google Gemini Enterprise for CX (formerly Customer Engagement
@@ -70,7 +80,7 @@ search coverage is given, because those cells rest on a narrower search (see Lim
      have no language list.
    - In some cases Italian is listed only for one channel or depends on a third-party speech
      provider; see the `lang_it` values in the results.
-3. **Handling AI callers is new, and appears only in vendor announcements.** 4 platforms address AI
+3. **Handling AI callers is new, and appears only in vendor announcements.** 5 platforms address AI
    callers or declared personal agents, all V and all from posts dated October 2026:
    - **Sierra:** fleming-1, real-time scoring of caller audio for signs of AI generation, alongside
      the Personal Agent Protocol (PAP, in development).
@@ -80,12 +90,22 @@ search coverage is given, because those cells rest on a narrower search (see Lim
    - **Decagon:** Personal Agent Gateway and the PACT protocol (specification in progress).
    - **Parloa:** middleware for personal agents, built with design partners and not generally
      available.
+   - **Genesys Cloud AI:** a Genesys blog post (6 Oct 2026) says Genesys is developing PAP with
+     Sierra, Meta and other partners, and exploring how personal agents will reach businesses through
+     Genesys Cloud. No detection method or date is given. This cell was not found in the first pass
+     and changed after an external review (METHOD.md, change 10).
+   - **Cognigy (NICE), not counted:** press coverage of the 6 Oct 2026 announcements
+     ([CMSWire](https://www.cmswire.com/contact-center/genesys-joins-sierra-meta-on-open-standard-for-personal-ai-agents-01/))
+     names NiCE, Cognigy's owner, as a PAP partner in Meta's announcement. Two searches found no
+     nice.com or cognigy.com page, and press is not used for capabilities, so the cell stays not found.
+     [CX Foundation](https://cxfoundation.com/news/genesys-personal-agent-protocol) (9 Oct 2026)
+     covers Genesys's role.
 
-   We did not find it in any platform's product docs. For the 13 platforms where nothing was found,
-   9 are on partial/none-coverage platforms. Answering-machine detection was not counted.
+   We did not find it in any platform's product docs. For the 12 platforms where nothing was found,
+   8 are on partial/none-coverage platforms. Answering-machine detection was not counted.
 4. **Where a vendor publishes decides what can be verified.**
    - Sierra, Decagon and Parloa keep their product docs behind a login. They account for 48 of the
-     62 vendor-states cells, and have 0, 2 and 3 documented cells respectively.
+     63 vendor-states cells, and have 0, 2 and 3 documented cells respectively.
    - For these three, most capabilities can be checked only through sales material or an NDA, not
      through public documentation.
    - Rule B was relaxed so that they could be included (METHOD.md, change 1).
@@ -110,11 +130,11 @@ Each platform is also scored on three dimensions and one index. **These scores m
 documentation, not capability**: a vendor that documents less, or keeps its docs behind a login,
 scores lower whatever its product does.
 
-- Rules (written before any score was computed): [METHOD.md](METHOD.md), section "Dimension scores
-  and synthetic index".
+- Rules: [METHOD.md](METHOD.md), section "Dimension scores and synthetic index", and changes 8–10,
+  which were made after an external review.
 - Why these choices: [docs/evaluating-agents.md](docs/evaluating-agents.md), a short study of how
   agents, platforms and composite indices are evaluated.
-- Tables, ranges, sensitivity analysis and how to read them: [docs/scores.md](docs/scores.md).
+- Tables, ranges, gaps, sensitivity analysis and how to read them: [docs/scores.md](docs/scores.md).
 
 | Dimension | Question | Criteria |
 |---|---|---|
@@ -124,31 +144,42 @@ scores lower whatever its product does.
 
 How a score is built:
 
-- Each cell is scored 1 if documented and 0.5 if the vendor states it only on marketing pages.
-- A not-found cell is never counted as zero. It counts 0 for a **lower bound** and 1 for an
-  **upper bound**, so every score is a range.
-- **Coverage** is the share of cells with evidence. The width of a range is 1 − coverage.
+- Every score is a range of worst-case and best-case bounds.
+- A documented cell counts 1 at both bounds.
+- A cell the vendor states only on marketing, blog or press pages counts 0.5 for the **lower
+  bound** and 1 for the **upper bound**.
+- A not-found cell counts 0 for the lower bound and 1 for the upper bound. It is never counted as
+  zero outright.
+- Publishing more never lowers either bound.
+- **Coverage** is the share of cells with any evidence.
 - A dimension score is the mean of its criteria. The index is the equal-weight mean of the three
   dimensions.
 
 What the scores show (all figures from [docs/scores.md](docs/scores.md)):
 
-1. **No ranking holds.** 98 of 136 platform pairs have overlapping index ranges. 14 of 17 platforms
-   move more than 2 places across the sensitivity scenarios. Under the rule fixed in advance, no
-   league table is published.
-2. **The evidence separates three bands, and band 3 is about where vendors publish.**
-   - Band 1 holds 12 platforms; band 2 holds ElevenAgents and Salesforce Agentforce.
-   - Band 3 holds Decagon, Parloa and Sierra, the three platforms whose product docs are behind a login.
-   - The bands depend on scoring vendor claims at 0.5. If claims counted as documentation, all 17
-     platforms would fall into one band.
-   - ElevenAgents is in band 2 although it has the second-highest coverage (91%): its vendor-states
-     cells cap its upper bound.
-3. **Missing data moves ranks more than weights do.** Across 31 sensitivity scenarios, which vary
-   weights, the value given to vendor claims, and each criterion left out in turn, a platform's
-   lower-bound rank spans a median of 4 positions. The ranks the missing data allows span a median
-   of 13.
-4. **Narrower search, wider ranges.** The median width of the index range is 0.22 for the 11
-   platforms with partial or no search coverage, against 0.14 for the 6 with full coverage.
+1. **The public evidence does not separate the 17 platforms.**
+   - Under a monotone rule, every upper bound is 1, because public pages never rule a capability out.
+   - So all 136 pairs of index ranges overlap.
+   - No ranking or grouping is published, and the export carries no ranks.
+2. **What differs is how much each vendor documents.**
+   - Lower bounds (the floor set by published evidence) run from 0.36 to 0.96, and coverage from
+     60% to 96%.
+   - The three vendors whose product docs are behind a login (Decagon, Parloa, Sierra) have 0 to 3
+     documented cells each; the other 14 have 12 to 23.
+3. **Where the gaps are, by dimension.**
+   - Evaluation: a repeated-trial metric is undocumented for 13 of 17 platforms, judge calibration
+     for 9.
+   - Production and governance: no platform documents AI-caller handling in product docs (17 of 17
+     undocumented).
+   - Voice and EU fit: an EU AI Act page is undocumented for 13, the email channel for 11.
+4. **An earlier scoring convention separated platforms in a way the evidence does not support.**
+   - The first version scored vendor claims 0.5 at both bounds, so a published claim could lower a
+     platform's upper bound below that of a platform that published nothing.
+   - That version set the three vendors with gated docs (Decagon, Parloa, Sierra) apart from the
+     rest. The separation came from the convention, not from the evidence.
+   - It is kept as a sensitivity scenario. METHOD.md, change 8, records the correction.
+5. **Narrower search, wider ranges.** The median width of the index range is 0.28 for the 11
+   platforms with partial or no search coverage, against 0.16 for the 6 with full coverage.
 
 ## Limits, and how a score can be misread
 
@@ -157,7 +188,7 @@ What the scores show (all figures from [docs/scores.md](docs/scores.md)):
   only partly with them. Those platforms were collected from vendor documentation indexes and direct
   page fetches instead. After review, every not-found cell of Parloa and PolyAI received one standard
   web search; the other partial/none platforms did not. Their not-found cells therefore rest on a
-  narrower search: on average about 6.2 not-found cells per platform without search coverage, against
+  narrower search: on average about 6.0 not-found cells per platform without search coverage, against
   3.8 for platforms with full coverage. See the `search_coverage` column, the last column of the
   counts table in the results, and METHOD.md, change 2.
 - **Volume is not quality.** Large suites document more than start-ups. More "D" cells means more
@@ -168,9 +199,14 @@ What the scores show (all figures from [docs/scores.md](docs/scores.md)):
   comes from QA products whose pages describe human agents' conversations without saying whether
   they cover AI-agent conversations.
 - **Scores add conventions.** The dimension scores and the index add choices on top of the cells:
-  0.5 for a vendor claim, equal weights, linear aggregation. [docs/scores.md](docs/scores.md) shows
+  0.5 to 1 for a vendor claim, equal weights, linear aggregation. The value table was corrected
+  after an external review (METHOD.md, change 8). [docs/scores.md](docs/scores.md) shows
   how much each choice moves the results. A range is a bound under those conventions, not a
   confidence interval.
+- **Candidate criterion for a next version.** AI-management certifications are not scored. ISO/IEC
+  42001 and AIUC-1, a certification for AI agents whose publisher maps it to ISO 42001, the EU AI Act
+  and the NIST AI RMF ([aiuc-1.com](https://www.aiuc-1.com/), accessed 2026-11-08), are candidates
+  for the governance dimension. Adding them now would change the rubric after scoring.
 - **Vendor statements are unverified.** Certifications listed on trust centres were not checked
   against audit reports. Announcement-stage features (October 2026) may not be generally available.
 - **Tooling.** Pages were read by LLM agents through an automated fetch-and-summarise tool. Some trust
@@ -213,7 +249,7 @@ collection, so it is not independent.
 | `data/reverification.csv` | The 10% re-verification sample and its outcome |
 | `scripts/benchmark.py` | Validation, not-applicable rules, sampling, scoring, sensitivity analysis, generation of every output |
 | `docs/results.md` | Capability matrix, per-criterion counts, recorded values |
-| `docs/scores.md` | Dimension scores, index ranges, coverage, bands, sensitivity analysis |
+| `docs/scores.md` | Dimension scores, index ranges, coverage, documentation gaps by dimension, sensitivity analysis |
 | `docs/evaluating-agents.md` | Study behind the dimensions and the index, with sources |
 | `data/export/platforms.json` | Machine-readable export: platforms, criteria, evidence, scores, scenarios (one `id` per record) |
 | `data/export/platforms.schema.json` | JSON Schema of the export (version 1.0.0) |

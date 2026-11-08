@@ -1,10 +1,9 @@
 # Evaluating AI agents and agent platforms: what the sources say (November 2026)
 
-This note grounds the dimensions and the index in [scores.md](scores.md). It covers three bodies of
-work: how agents are evaluated, how enterprise buyers and analysts evaluate platforms, and how
-composite indices are built. All sources were accessed on 2026-11-08 and are listed at the end with
-their URLs. They were found and summarised by LLM agents with web-search and page-fetch tools; the
-author chose what to keep. Section 4 says what follows for this benchmark.
+This note grounds the dimensions and the index in [scores.md](scores.md). It covers how agents
+are evaluated, how buyers and analysts evaluate platforms, and how composite indices are built.
+Sources, all accessed on 2026-11-08, are listed at the end. LLM agents found and summarised them;
+the author chose what to keep. Section 4 draws the consequences.
 
 ## 1. Evaluating the agent
 
@@ -12,18 +11,21 @@ author chose what to keep. Section 4 says what follows for this benchmark.
 the agent works with domain tools and a written policy. Success is judged on the final database
 state, compared with an annotated goal. It also introduced pass^k: the probability that *all* k
 independent trials of the same task succeed. pass@k is the probability that at least one succeeds.
-For a customer-facing agent, consistency is what matters. Anthropic's guidance [4] gives the
-arithmetic: a 75% per-trial success rate falls to roughly 42% for three passes in a row. In the
-original τ-bench paper, gpt-4o solved fewer than half the tasks, and its pass^8 in retail was below 25%.
+Customer-facing agents need consistency: a 75% per-trial success rate falls to roughly 42% for
+three passes in a row [4]. In τ-bench, gpt-4o solved fewer than half the tasks, with pass^8 in
+retail below 25%.
 
 **Fidelity of the simulated user.** τ²-bench [2] lets the user act on a shared environment too, as in
 technical support, and constrains the simulator through tools and observable state. Agents score
-noticeably lower when they have to guide a user than when they act alone. A benchmark that ignores
-the user's side overstates performance.
+noticeably lower when they have to guide a user than when they act alone.
 
 **Faults and channel conditions.** τ-Voice [3] runs the same kind of tasks over full-duplex voice,
 with accents, background noise and turn-taking. One frontier model reaches about 85% in text. Voice
-agents reach 31–51% in clean audio and 26–38% in realistic audio. Full-Duplex-Bench [19] isolates
+agents reach 31–51% in clean audio and 26–38% in realistic audio. EVA-Bench [21], from ServiceNow
+AI Research, scores voice agents on two composites: EVA-A (accuracy: task completion, faithfulness,
+speech fidelity) and EVA-X (experience: progression, conciseness, turn-taking). It uses bot-to-bot
+audio conversations, with automatic checks that regenerate conversations when the simulated user
+errs. None of the 12 systems tested exceeds 0.5 on both composites. Full-Duplex-Bench [19] isolates
 pause handling, backchannels, turn-taking and interruptions. For voice deployments, text scores are
 not a proxy.
 
@@ -45,8 +47,9 @@ premature escalations, and checks what context reaches the human.
   other. They also documented position, verbosity and self-enhancement biases. Anthropic [4]
   recommends checking model graders against human experts and giving them an "unknown" option.
 - *Confidence calibration.* Whether stated confidence matches accuracy. HELM [9] lists it among its
-  seven core metrics. HAL's reliability work [11] tracks consistency, robustness, safety,
-  predictability and self-awareness.
+  seven core metrics. Rabanser, Kapoor et al. [20] split agent reliability into four dimensions
+  (consistency, robustness, predictability, safety) measured by twelve metrics. Across 15 models,
+  they find that capability gains have brought only small reliability gains.
 
 **Latency and cost per resolved contact.** Kapoor et al. [10] show that accuracy-only leaderboards
 reward expensive designs; they argue for accuracy–cost Pareto curves. HAL [11] ran 21,730 rollouts
@@ -57,17 +60,24 @@ definition of resolution part of the contract.
 
 **In production.** The NIST AI RMF MEASURE function [12] asks for documented test sets and metrics
 (2.1), performance shown under deployment-like conditions (2.3), monitoring in production (2.4),
-safe failure (2.6), and assessors independent of the developers (1.3). In the EU, Article 50(1) of
-the AI Act [13] requires that people be informed when they interact with an AI system, unless that
-is obvious.
+safe failure (2.6), and assessors independent of the developers (1.3).
+
+**EU transparency rules.** Article 50 of the AI Act [13] has applied since 2 August 2026 [22, 23].
+
+- Article 50(1) requires that people be told when they interact with an AI system, unless that is
+  obvious.
+- Article 50(2) requires machine-readable marking of synthetic audio, which matters for voice agents.
+  Systems placed on the market before 2 August 2026 have until 2 December 2026.
+- The Digital Omnibus on AI (Regulation (EU) 2026/1744) [24] replaced only Article 50(7) and set
+  that deadline in Article 111(4). It left Article 50(1) unchanged.
+- The Commission adopted guidelines on Article 50, and the AI Office published a voluntary Code of
+  Practice on the transparency of AI-generated content, both in July 2026 [22, 23].
 
 ## 2. How buyers and analysts evaluate platforms
 
-**Analyst rubrics.** Forrester's published Wave methodology [14] works as follows. The analyst
-chooses differentiating criteria and assigns weights. Evidence comes from vendor questionnaires,
-briefings and demos, and interviews with references that the vendor supplies. Vendors can be
-assessed without participating. Gartner's Magic Quadrant methodology page returned an access error
-and is not used here.
+**Analyst rubrics.** In Forrester's published Wave methodology [14], the analyst chooses
+differentiating criteria and assigns weights. Evidence comes from vendor questionnaires, briefings
+and demos, and references that the vendor supplies. Vendors can be assessed without participating.
 
 **Public procurement.** EU Directive 2014/24/EU [15], Article 67(5), requires buyers to publish the
 relative weight of each award criterion in advance. Where weighting is not possible, they publish
@@ -89,20 +99,10 @@ during the procedure.
 
 ## 3. Composite indices: the OECD/JRC Handbook
 
-The Handbook [16] sets out ten steps:
-
-1. theoretical framework
-2. data selection
-3. imputation of missing data
-4. multivariate analysis
-5. normalisation
-6. weighting and aggregation
-7. uncertainty and sensitivity analysis
-8. back to the data
-9. links to other indicators
-10. visualisation
-
-The points that matter here:
+The Handbook [16] sets out ten steps: (1) theoretical framework, (2) data selection, (3) imputation
+of missing data, (4) multivariate analysis, (5) normalisation, (6) weighting and aggregation,
+(7) uncertainty and sensitivity analysis, (8) back to the data, (9) links to other indicators,
+(10) visualisation. The points that matter here:
 
 - **Normalisation.** Options include ranking, z-scores, min-max, distance to a reference and
   categorical scales. Categorical scales suit qualitative data, at the cost of detail.
@@ -125,19 +125,23 @@ The points that matter here:
 2. **Framework before data (step 1).** The three dimensions answer three buyer questions: can I
    measure it, can I run it under control, can it reach my customers in Europe. Each criterion
    belongs to exactly one dimension.
-3. **Normalisation.** A categorical scale (documented 1, vendor states 0.5), written down before
-   scoring, as procurement rules require for weights [15].
-4. **Missing data.** No imputation. Missingness is not random, so every score is a range: unknown
-   cells count 0 for the lower bound and 1 for the upper bound, with coverage reported. This makes
-   the effect of the missing data visible instead of hiding it [16].
+3. **Normalisation.** A categorical scale written down before scoring, as procurement rules require
+   for weights [15]: documented 1; vendor states 0.5 to 1. The scale is monotone, so publishing more
+   never lowers a bound. The first version broke this (METHOD.md, change 8).
+4. **Missing data: partial-identification bounds.** Missingness is not random, so each score is the
+   pair of worst-case and best-case values (Manski [25]). Unknown cells count 0 and 1, claims 0.5 and
+   1, and coverage is reported. Without an assumption about why documentation is missing, these
+   bounds are the narrowest statement the data support. They make the effect of the missing data
+   visible instead of hiding it [16]. Here every upper bound is 1, so the floor and the coverage
+   carry the information.
 5. **Weights.** Equal weights across dimensions by default, stated as a value judgement, with the
    implied criterion weights published.
 6. **Aggregation.** Linear, for transparency. Because it is compensatory, dimension scores are
    always shown next to the index.
 7. **Sensitivity (step 7).** Alternative weights, alternative values for vendor claims,
-   leave-one-criterion-out runs, and the rank range that the missing data allows.
-8. **Ranking.** A ranking rule was fixed in advance. If the ranges overlap too much, platforms are
-   shown in bands, never in a league table.
+   leave-one-criterion-out runs, and the width of the rank interval that the missing data allows.
+8. **Ranking.** A ranking rule was fixed in advance. Absolute ranks are never published, only how
+   wide each platform's rank interval is.
 9. **Not done, and why.**
    - No Monte Carlo imputation: there is no defensible distribution for an unknown cell.
    - No multivariate weighting (step 4): 17 platforms with near-binary data give unstable
@@ -165,3 +169,9 @@ The points that matter here:
 17. Paruolo, Saisana, Saltelli. *Ratings and rankings: voodoo or science?* Journal of the Royal Statistical Society A 176(3), 2013, 609–634. Preprint: https://arxiv.org/abs/1104.3009
 18. Saisana, Saltelli, Tarantola. *Uncertainty and sensitivity analysis techniques as tools for the quality assessment of composite indicators*. Journal of the Royal Statistical Society A 168(2), 2005, 307–323. https://econpapers.repec.org/RePEc:bla:jorssa:v:168:y:2005:i:2:p:307-323
 19. Lin et al. *Full-Duplex-Bench: A Benchmark to Evaluate Full-duplex Spoken Dialogue Models on Turn-taking Capabilities*. arXiv:2503.04721, 2025. https://arxiv.org/abs/2503.04721
+20. Rabanser, Kapoor, Kirgis, Liu, Utpala, Narayanan. *Towards a Science of AI Agent Reliability*. arXiv:2602.16666, 2026. https://arxiv.org/abs/2602.16666
+21. Bogavelli et al. (ServiceNow AI Research). *EVA-Bench: A New End-to-end Framework for Evaluating Voice Agents*. arXiv:2605.13841, 2026. https://arxiv.org/abs/2605.13841
+22. Houthoff. *AI Act transparency obligations and the AI Omnibus Regulation*, 1 September 2026 (law-firm summary). https://www.houthoff.com/insights/news/ai-act-transparency-obligations-and-the-ai-omnibus-regulation/
+23. Baker Botts. *EU AI Act Article 50 transparency obligations go live*, 10 September 2026 (law-firm summary). https://www.bakerbotts.com/thought-leadership/publications/2026/september/eu-ai-act-article-50-transparency-obligations-go-live
+24. Regulation (EU) 2026/1744 (Digital Omnibus on AI), 8 July 2026: amendment of Article 50(7) and new Article 111(4). https://eur-lex.europa.eu/eli/reg/2026/1744/oj
+25. Manski. *Anatomy of the Selection Problem*. Journal of Human Resources 24(3), 1989, 343–360. https://ideas.repec.org/a/uwp/jhriss/v24y1989i3p343-360.html

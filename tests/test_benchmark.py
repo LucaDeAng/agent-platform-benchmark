@@ -79,10 +79,15 @@ def test_every_criterion_maps_to_exactly_one_dimension():
 
 def test_value_table_matches_method():
     assert bm.cell_bounds("documented") == (1, 1)
-    assert bm.cell_bounds("vendor_states") == (F(1, 2), F(1, 2))
+    assert bm.cell_bounds("vendor_states") == (F(1, 2), 1)
     assert bm.cell_bounds("not_found") == (0, 1)
     assert bm.cell_bounds("not_applicable") == (0, 1)
-    assert bm.cell_bounds("vendor_states", F(0)) == (0, 0)
+    assert bm.cell_bounds("vendor_states", (F(0), F(0))) == (0, 0)
+
+
+def test_value_table_is_monotone_and_old_table_was_not():
+    assert bm.is_monotone(bm.VALUE_TABLE)
+    assert not bm.is_monotone({**bm.VALUE_TABLE, "vendor_states": (F(1, 2), F(1, 2))})
 
 
 def test_not_found_is_a_range_not_a_zero():
@@ -97,14 +102,18 @@ def test_index_is_weighted_mean_of_dimensions():
     ds = bm.dimension_scores({("x", "c1"): "documented", ("x", "c2"): "vendor_states"}, ["x"],
                              bm.dimension_criteria(dims, crits))
     idx = bm.index_scores(ds, ["x"], {"d1": F(3, 4), "d2": F(1, 4)})
-    assert idx["x"] == (F(7, 8), F(7, 8), 1)
+    assert idx["x"] == (F(7, 8), 1, 1)
 
 
-def test_range_width_equals_one_minus_coverage_on_real_data():
+def test_range_width_is_unknown_share_plus_half_vendor_share():
     *_, m = real_model()
-    for lo, hi, cov in list(m["ds"].values()) + list(m["idx"].values()):
+    for (p, d), (lo, hi, cov) in m["ds"].items():
+        sts = [m["status"][(p, c)] for c in m["dim_crits"][d]]
+        unknown = sum(s in ("not_found", "not_applicable") for s in sts)
+        vendor = sum(s == "vendor_states" for s in sts)
         assert 0 <= lo <= hi <= 1
-        assert hi - lo == 1 - cov
+        assert hi - lo == (unknown + F(vendor, 2)) / len(sts)
+        assert cov == F(len(sts) - unknown, len(sts))
 
 
 def test_competition_ranks_share_ties():
@@ -117,20 +126,21 @@ def test_possible_ranks_and_bands():
     assert bm.bands(idx) == {"a": 1, "c": 1, "b": 2}
 
 
-def test_ranking_rule_holds_only_without_overlap():
-    separated = bm.compute(*synthetic({"a": ["documented", "documented"], "b": ["documented", "vendor_states"],
-                                       "c": ["vendor_states", "vendor_states"]}))
-    assert separated["n_overlap"] == 0 and separated["ranking_holds"]
-    unknown = bm.compute(*synthetic({"a": ["documented", "documented"], "b": ["documented", "vendor_states"],
-                                     "c": ["not_found", "not_found"]}))
-    assert unknown["n_overlap"] == 2 and not unknown["rule_a"] and not unknown["ranking_holds"]
+def test_overlap_and_ranking_rule():
+    assert not bm.overlaps((F(9, 10), F(1), 0), (F(0), F(1, 2), 0))
+    assert bm.overlaps((F(1, 2), F(1), 0), (F(0), F(1, 2), 0))
+    # Under a monotone table every upper bound is 1, so ranges always overlap and no ranking can hold.
+    m = bm.compute(*synthetic({"a": ["documented", "documented"], "b": ["documented", "vendor_states"],
+                               "c": ["not_found", "not_found"]}))
+    assert m["n_overlap"] == 3 and not m["rule_a"] and not m["ranking_holds"] and m["band_count"] == 1
 
 
 def test_sensitivity_scenarios_are_the_ones_in_method():
     *_, m = real_model()
     kinds = [r["kind"] for r in m["runs"]]
     assert kinds[0] == "default"
-    assert kinds.count("weights") == 4 and kinds.count("value_table") == 2 and kinds.count("leave_one_out") == 24
+    assert kinds.count("weights") == 4 and kinds.count("value_table") == 3 and kinds.count("leave_one_out") == 24
+    assert any(r["vendor"] == (F(1, 2), F(1, 2)) for r in m["runs"])  # pre-change-8 table kept as a scenario
 
 
 def check_record(record, spec, where):
@@ -151,6 +161,9 @@ def test_export_follows_schema_and_keys():
         ids[key] = [r["id"] for r in data[key]]
         assert len(ids[key]) == len(set(ids[key])), key
     assert len(data["evidence"]) == 17 * 24
+    assert data["schema_version"].startswith("2.") and data["summary"]["ranking_published"] is False
+    for rec in data["index_scores"]:  # no absolute ranks: only rank-interval widths
+        assert all("width" in k for k in rec if "rank" in k) and "band" not in rec
     for rec in data["evidence"] + data["dimension_scores"] + data["index_scores"]:
         assert rec["platform_id"] in ids["platforms"]
     for rec in data["evidence"]:

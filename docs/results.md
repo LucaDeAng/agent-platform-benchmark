@@ -112,7 +112,7 @@ Columns: **API** = Tools via APIs / functions / webhooks; **MCP** = Model Contex
 | Decagon | [V](https://decagon.ai/product/watchtower) | [V](https://decagon.ai/product/voice) | [V](https://decagon.ai/blog/personal-agents-are-here) |
 | ElevenAgents (ElevenLabs) | [D](https://elevenlabs.io/docs/eleven-agents/customization/agent-analysis) | [D](https://elevenlabs.io/docs/eleven-agents/customization/tools/system-tools/transfer-to-number) | [V](https://elevenlabs.io/blog/synthetic-voice-detection-and-personal-agent-protocol) |
 | Fin (formerly Intercom) | [D](https://www.intercom.com/help/en/articles/7120684-fin-ai-agent-explained) | [D](https://www.intercom.com/help/en/articles/10697275-deploy-fin-voice) | · |
-| Genesys Cloud AI | [D](https://help.genesys.cloud/articles/test-and-troubleshoot-agentic-virtual-agents/) | [D](https://help.genesys.cloud/articles/about-genesys-virtual-agent/) | · |
+| Genesys Cloud AI | [D](https://help.genesys.cloud/articles/test-and-troubleshoot-agentic-virtual-agents/) | [D](https://help.genesys.cloud/articles/about-genesys-virtual-agent/) | [V](https://www.genesys.com/blog/post/personal-ai-will-change-the-customer-relationship) |
 | Google Gemini Enterprise for CX (formerly Customer Engagement Suite) | [D](https://docs.cloud.google.com/dialogflow/cx/docs/concept/conversation-history) | [D](https://docs.cloud.google.com/contact-center/ccai-platform/docs/Virtual_Agent) | · |
 | Kore.ai | [D](https://docs.kore.ai/agent-platform/analytics-and-insights) | [D](https://docs.kore.ai/agent-platform/escalate) | · |
 | LivePerson | [D](https://www.liveperson.com/pricing/) | [D](https://developers.liveperson.com/headless-sdk-conversation-summary-notes.html) | · |
@@ -175,7 +175,7 @@ The last column says how many of the not-found cells are on platforms whose sear
 | Judge calibration against human labels (`eval_judge_cal`) | 8 | 1 | 9 | 8 | 0 | 4 of 8 |
 | Observability and QA (`obs_qa`) | 14 | 3 | 17 | 0 | 0 | 0 of 0 |
 | Human handoff with context (`handoff`) | 13 | 4 | 17 | 0 | 0 | 0 of 0 |
-| AI-caller detection / declared-agent protocol (`aicaller`) | 0 | 4 | 4 | 13 | 0 | 9 of 13 |
+| AI-caller detection / declared-agent protocol (`aicaller`) | 0 | 5 | 5 | 12 | 0 | 8 of 12 |
 | EU data residency (`residency_eu`) | 11 | 2 | 13 | 4 | 0 | 3 of 4 |
 | ISO/IEC 27001 (`cert_iso27001`) | 12 | 2 | 14 | 3 | 0 | 3 of 3 |
 | SOC 2 (`cert_soc2`) | 16 | 1 | 17 | 0 | 0 | 0 of 0 |
@@ -195,7 +195,7 @@ Short values recorded with the evidence (billing unit, deployment model, MCP dir
 | Decagon | SMS;WhatsApp |  |  |  | traces;dashboards;transcripts;automated QA (Watchtower) | summary;conversation context | personal-agent detection in chat and voice;PACT (specification in progress) | Type II | per_conversation;per_resolution | vendor_led |
 | ElevenAgents (ElevenLabs) | WhatsApp;SMS;Telegram;Slack | listed | 18 | client;server | dashboard;transcripts;success evaluation;sentiment;smart search | agent_message;reason | synthetic voice detection;PAP (in development; support planned) | Type II | per_minute;per_message | both |
 | Fin (formerly Intercom) | WhatsApp;SMS;Instagram;Facebook Messenger;Slack | chat;voice | 21 | client;server | dashboards;topics;CX score;scorecards;monitors | summary;transcript |  | Type II | per_resolution | both |
-| Genesys Cloud AI | WhatsApp;SMS;Messenger;Apple Messages;Instagram | voice;digital | 14 |  | execution history;replay;dashboards;outcomes | summary;wrap-up codes;variables |  | Type 2 | usage_credits | vendor_led |
+| Genesys Cloud AI | WhatsApp;SMS;Messenger;Apple Messages;Instagram | voice;digital | 14 |  | execution history;replay;dashboards;outcomes | summary;wrap-up codes;variables | PAP (co-developing; in development) | Type 2 | usage_credits | vendor_led |
 | Google Gemini Enterprise for CX (formerly Customer Engagement Suite) | WhatsApp;Instagram | voice (Preview);chat | 12 | client;server | conversation history;analytics;Quality AI scorecards | escalation flag;chat transcript |  | SOC 2 (type not stated) | per_conversation | self_serve |
 | Kore.ai | WhatsApp;SMS;Messenger;Instagram;Microsoft Teams;LINE;Telegram;Slack |  |  | client;server | traces;dashboards;LLM-scored pipelines;Quality AI | context variables;summary |  | Type II | usage_credits |  |
 | LivePerson | SMS;WhatsApp;Apple Messages;Messenger;Instagram;RCS;LINE;Viber;WeChat;KakaoTalk | chat;voice | 12 |  | report center;analytics studio;AI annotator | summary notes;automated summaries |  | type not stated | contact_sales_only | both |

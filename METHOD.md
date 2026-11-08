@@ -175,19 +175,28 @@ Why these three:
 
 ### Level-to-value table
 
-Each cell's status becomes a value between 0 and 1. A cell without evidence has no single value: it
-gets a lower and an upper value.
+Each cell's status becomes a value between 0 and 1. A cell without full evidence has no single value:
+it gets a lower and an upper value. The table is **monotone**: moving a cell from `not_found` to
+`vendor_states` to `documented` never lowers either bound. The `vendor_states` row was changed after
+the first results (change 8); the original row (0.5 / 0.5) is kept as a sensitivity scenario.
 
 | Status | Lower value | Upper value | Why |
 |---|---|---|---|
 | `documented` | 1 | 1 | The vendor documents the capability in product docs, trust, pricing or legal pages. |
-| `vendor_states` | 0.5 | 0.5 | The vendor claims it on marketing, blog or press pages only. A buyer cannot check configuration or scope from public documentation. |
+| `vendor_states` | 0.5 | 1 | The vendor claims it on marketing, blog or press pages only. A buyer cannot check configuration or scope from public documentation, so the claim earns half at the lower bound; it cannot rule the capability out, so the upper bound stays 1. |
 | `not_found` | 0 | 1 | Unknown. The lower bound assumes the capability is absent, the upper bound assumes it is documented. |
 | `not_applicable` | 0 | 1 | Unknown, because the parent criterion (voice channel, LLM judge) was not found. Treated like `not_found`. |
 
 Only the status is scored. Recorded values (which channels, which billing unit, voice-only Italian,
-and so on) are not scored; every criterion uses the same table. The value 0.5 for `vendor_states`
-is a judgement, so the sensitivity analysis also runs it at 0 and at 1.
+and so on) are not scored; every criterion uses the same table. The lower value 0.5 for
+`vendor_states` is a judgement, so the sensitivity analysis also treats claims as unknown (0 to 1)
+and as documentation (1).
+
+The lower and upper bounds are worst-case and best-case bounds in the sense of partial
+identification (Manski, *Anatomy of the Selection Problem*, Journal of Human Resources 24(3), 1989):
+without an assumption about why a cell lacks documentation, they are the narrowest statement the
+data support. A consequence: under this table every upper bound is 1, because public pages never rule
+a capability out. The informative quantities are the lower bound and the coverage.
 
 ### Dimension scores, ranges and coverage
 
@@ -197,16 +206,16 @@ For each platform and dimension:
 - **upper bound** = mean of the criteria's upper values (`not_found` counts as 1);
 - **coverage** = share of the dimension's cells with evidence (`documented` or `vendor_states`).
 
-By construction, upper minus lower = 1 − coverage. A score is always reported as a range, never as a
-single number. No midpoint is published, because a midpoint would amount to imputing 0.5 to every
+By construction, upper minus lower = the share of cells not found or not applicable, plus half the
+share of `vendor_states` cells. A score is always reported as a range, never as a single number. No midpoint is published, because a midpoint would amount to imputing 0.5 to every
 unknown cell.
 
 ### Synthetic index
 
 - **Default:** weighted arithmetic mean of the three dimension scores with equal weights (1/3 each),
   computed separately for the lower and the upper bound. Index coverage = the same weighted mean of
-  the dimension coverages, so that index upper − lower = 1 − index coverage. The raw number of cells
-  with evidence (out of 24) is reported alongside.
+  the dimension coverages. The raw numbers of documented, vendor-states and no-evidence cells (out
+  of 24) are reported alongside.
 - Equal weights across dimensions mean unequal weights across criteria: each `eval_qa` criterion
   weighs 1/18, each `prod_gov` criterion 1/24 and each `voice_eu` criterion 1/30 of the index.
 - Linear aggregation is compensatory: a high score in one dimension offsets a low score in another.
@@ -219,19 +228,23 @@ All scenarios are computed for both the lower and the upper bound:
 1. **Weightings** (dimension weights `eval_qa` / `prod_gov` / `voice_eu`): equal 1/3 each (default);
    evaluation-heavy 1/2, 1/4, 1/4; governance-heavy 1/4, 1/2, 1/4; EU-heavy 1/4, 1/4, 1/2;
    criterion-equal 6/24, 8/24, 10/24 (every criterion weighs 1/24).
-2. **Value table:** `vendor_states` = 0 and `vendor_states` = 1, with equal weights.
+2. **Value table** (equal weights): `vendor_states` = 0.5 at both bounds (the table before change 8,
+   not monotone); `vendor_states` treated as unknown (0 to 1); `vendor_states` = 1. (Before change 8
+   the variants were `vendor_states` = 0 and = 1.)
 3. **Leave one criterion out:** each of the 24 criteria dropped in turn, equal weights, the dimension
    score being the mean of its remaining criteria.
 
 Ranks use competition ranking: rank = 1 + the number of platforms with a strictly higher score, so
-tied platforms share a rank. For each platform the script reports its rank range (best and worst
-rank) across scenarios, separately for lower-bound and upper-bound scores, and the most influential
-criteria in the leave-one-out runs.
+tied platforms share a rank. Ranks are computed internally only. Under change 9, the outputs report
+for each platform only the **width** of its rank interval (worst minus best rank) across scenarios,
+separately for lower-bound and upper-bound scores. They also report the largest rank shift per
+scenario and the most influential criteria in the leave-one-out runs.
 
 **Possible rank under missing data.** With the default weights, a platform's best possible rank is
 reached when its unknown cells are all 1 and every other platform's are all 0, and its worst possible
 rank in the opposite case: best = 1 + the number of platforms whose lower bound exceeds its upper
-bound; worst = 1 + the number of platforms whose upper bound exceeds its lower bound.
+bound; worst = 1 + the number of platforms whose upper bound exceeds its lower bound. Only the
+width (worst − best) is published.
 
 ### When a ranking is shown, and bands otherwise
 
@@ -246,7 +259,8 @@ Otherwise `docs/scores.md` lists platforms alphabetically with their ranges and 
 by interval dominance on the default index. Platform B dominates platform A when B's lower bound
 exceeds A's upper bound. Band 1 holds the platforms that no platform dominates; band 2 the platforms
 dominated only by band-1 platforms; and so on. A band says which platforms the public evidence can
-separate. It is not a quality grade, and platforms within a band are not ordered.
+separate. It is not a quality grade, and platforms within a band are not ordered. Under change 9,
+no absolute rank is published even if both conditions hold.
 
 ## Limits
 
@@ -336,3 +350,26 @@ All decided on 2026-11-08 after the first collection pass, i.e. **not blind** to
    three reporting elements were added to `docs/scores.md`: band stability across scenarios, the
    list of scenarios that change a band, and a note on platforms placed below better-covered ones.
    They report results and change no rule.
+8. **Monotone value table (2026-11-08, after an external review of the first scores).** The
+   pre-registered table gave `vendor_states` 0.5 at both bounds while `not_found` got 0 to 1. A
+   published claim therefore *lowered* a platform's upper bound compared with publishing nothing
+   (for example, Sierra's governance score was 0.50–0.50 against LivePerson's 0.44–0.94). This broke
+   a property the bounds must have: publishing more must never lower a bound. `vendor_states` is now
+   0.5 for the lower bound and 1 for the upper bound. This is a post-hoc correction, made after the
+   results were seen. Effect: the first version produced three dominance bands, with the three
+   vendors whose docs are behind a login below the rest; under the corrected table every upper bound
+   is 1 and all platforms fall into one band. The old table is kept as the scenario "vendor_states =
+   0.5 at both bounds", so that the artefact can be checked.
+9. **No absolute ranks in the outputs (2026-11-08, external review).** `docs/scores.md` and
+   `data/export/platforms.json` no longer show default ranks, best or worst possible ranks, or band
+   numbers per platform. They show the width of each platform's rank interval only. The export schema
+   moved to version 2.0.0.
+10. **Wording and one recoded cell (2026-11-08, external review).**
+   - Notes that referred to the review by an abbreviation now say "external review"; no content changed.
+   - `genesys,aicaller`: `not_found` to `vendor_states`. The reviewer reported Genesys and NiCE as PAP
+     partners from press coverage of the 6 Oct 2026 announcements. One search then found a Genesys
+     blog post of the same date: Genesys says it is developing PAP with Sierra and Meta and exploring
+     support through Genesys Cloud. That meets the `aicaller` rule as applied to ElevenLabs (working
+     group joined, support planned).
+   - `cognigy,aicaller` stays `not_found`: two searches found no nice.com or cognigy.com page, and
+     press is not used for capabilities. The note records the press report.

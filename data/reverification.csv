@@ -1,0 +1,42 @@
+platform_id,criterion_id,original_status,recheck_status,agree,rechecked,note
+cognigy,deploy_model,vendor_states,not_found,no,2026-11-08,"Refetched cited contact page: demo requests and a contact form only, no trial sign-up; partner link does not state implementation delivery. Corrected to not_found."
+google_ces,eval_judge_cal,documented,documented,yes,2026-11-08,Page: manually updated answers are added as examples to improve the AI scoring model.
+elevenlabs,residency_eu,documented,documented,yes,2026-11-08,"Page: EU isolated environment, data stored in the EU; Enterprise feature."
+cognigy,tools_api,documented,documented,yes,2026-11-08,HTTP Request node calls external APIs during flow execution.
+genesys,tel_byoc,documented,documented,yes,2026-11-08,BYOC Cloud: SIP trunks between Genesys Cloud edge and third-party carriers.
+microsoft,cert_iso27001,documented,documented,yes,2026-11-08,"ISO 27001:2013 in the Copilot Studio ISO table, reports on Service Trust Portal."
+sierra,lang_eu,not_found,not_found,yes,2026-11-08,"Search unavailable; refetched sierra.ai/product/voice: over 55 languages, no list."
+microsoft,handoff,documented,documented,yes,2026-11-08,Page: handoff shares full conversation history and all collected variables.
+ada,lang_it,documented,documented,yes,2026-11-08,"Italian supported for Messaging, Email and Voice."
+intercom,lang_eu,documented,documented,yes,2026-11-08,"21 of 24 EU official languages listed (no Irish, Maltese, Slovak)."
+google_ces,ch_chat,documented,documented,yes,2026-11-08,Configurable ready-to-use web widget and API on deploy page.
+decagon,aicaller,vendor_states,vendor_states,yes,2026-11-08,Blog: Personal Agent Gateway flags likely personal agents in chat and voice; PACT on A2A + OAuth 2.0.
+intercom,pricing_model,documented,documented,yes,2026-11-08,Billed per outcome (one per conversation; resolutions and other outcomes).
+parloa,lang_eu,not_found,not_found,yes,2026-11-08,"Search unavailable; refetched multilingual knowledge-hub page: 140+ languages, no list."
+sierra,ch_voice,vendor_states,vendor_states,yes,2026-11-08,Voice page: inbound and outbound calls handled.
+koreai,deploy_model,documented,not_found,no,2026-11-08,"Refetched getting-started page: sign-up limited to approved domains, access requested from Kore.ai; not self-serve. Corrected to not_found."
+intercom,lang_it,documented,documented,yes,2026-11-08,Italian in supported-language list.
+genesys,eval_judge_cal,documented,documented,yes,2026-11-08,"Agreement score between human evaluator and AI scores; test 20+ interactions, aim for 80%+."
+ada,cert_iso27001,not_found,not_found,yes,2026-11-08,Standard search ran: no vendor page; a third-party directory lists Ada certifications without ISO 27001.
+google_ces,deploy_model,documented,documented,yes,2026-11-08,"Pricing page: per-session prices, pricing calculator, billing in Cloud console."
+decagon,residency_eu,not_found,not_found,yes,2026-11-08,"Search unavailable; refetched decagon.ai/security: multi-region infrastructure, no EU region named."
+vapi,eval_judge_cal,documented,documented,yes,2026-11-08,Test an AI judge against responses reviewers agree should pass or fail.
+intercom,aicaller,not_found,not_found,yes,2026-11-08,Search unavailable; fin.ai sitemap has no page on personal-agent or synthetic-voice detection.
+salesforce,ch_chat,vendor_states,vendor_states,yes,2026-11-08,"Salesforce employee post (Feb 2025): Agentforce Service Agent chat GA, several languages."
+koreai,ch_messaging,documented,documented,yes,2026-11-08,"Channels page lists WhatsApp, Messenger, Twilio SMS, Telegram, Instagram, LINE, Teams, Slack."
+elevenlabs,lang_eu,documented,documented,yes,2026-11-08,Flash v2.5 list (tied to Agents Platform) has 18 EU official languages.
+google_ces,tel_byoc,documented,documented,yes,2026-11-08,"Voice connections to AudioCodes, Five9, Twilio, Google CCaaS; SBC detail not on this page."
+genesys,tools_api,documented,documented,yes,2026-11-08,"Tools are data actions, e.g. calling an API endpoint."
+amazon_connect,eval_sim,not_found,not_found,yes,2026-11-08,"Search unavailable; refetched simulation-concepts page: scripted observations and actions, no LLM-driven customer."
+liveperson,pricing_model,not_found,not_found,yes,2026-11-08,"Search unavailable; refetched pricing page: tiers with request-a-quote, no billing unit for AI agents."
+polyai,pricing_model,documented,documented,yes,2026-11-08,Per-minute pricing (Platform); per connected minute plus tokens (API).
+sierra,lang_it,not_found,not_found,yes,2026-11-08,"Search unavailable; refetched voice page: language count only, no list."
+ada,eval_sim,documented,documented,yes,2026-11-08,"Simulated end user responds per test-case scenario, up to 40 turns."
+genesys,eval_repeat,not_found,not_found,yes,2026-11-08,"Search unavailable; refetched testing article: manual testing, no repeated-run metric."
+intercom,handoff,documented,documented,yes,2026-11-08,Ringing modal shows AI summary; transcript and recording in Inbox.
+ada,eval_repeat,not_found,not_found,yes,2026-11-08,"Search unavailable; refetched simulations page: run-to-run variability noted, latest result only, no cross-run metric."
+amazon_connect,obs_qa,documented,documented,yes,2026-11-08,"Dashboards, conversational analytics, transcripts, automated evaluations."
+intercom,obs_qa,documented,documented,yes,2026-11-08,"Fin performance report, CX Score, Topics Explorer, real-time monitoring."
+parloa,ch_chat,vendor_states,vendor_states,yes,2026-11-08,"Universal Chat widget, switch between typing and talking."
+google_ces,residency_eu,documented,documented,yes,2026-11-08,eu multi-region listed for data at rest.
+zendesk,tel_byoc,documented,documented,yes,2026-11-08,SIP-IN lines support bring your own carrier.

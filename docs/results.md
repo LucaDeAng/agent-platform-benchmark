@@ -132,13 +132,13 @@ Columns: **Obs/QA** = Observability and QA; **Handoff** = Human handoff with con
 |---|---|---|---|---|---|---|
 | Ada | [D](https://www.ada.cx/subprocessors) | · | [D](https://security.ada.cx/) | · | · | [D](https://docs.ada.cx/docs/channels/voice/voice-onboarding) |
 | Amazon Connect | [D](https://docs.aws.amazon.com/connect/latest/adminguide/regions.html) | [D](https://aws.amazon.com/compliance/iso-certified/) | [D](https://aws.amazon.com/compliance/services-in-scope/SOC/) | [V](https://aws.amazon.com/blogs/machine-learning/building-trust-in-ai-the-aws-approach-to-the-eu-ai-act/) | [D](https://aws.amazon.com/connect/pricing/) | [D](https://aws.amazon.com/connect/pricing/) |
-| Cognigy (NICE) | [D](https://docs.cognigy.com/ai/administer/installation/ip-ranges-shared-environments) | [D](https://trust.cognigy.com/) | [D](https://trust.cognigy.com/) | · | · | [V](https://www.cognigy.com/contact-us) |
+| Cognigy (NICE) | [D](https://docs.cognigy.com/ai/administer/installation/ip-ranges-shared-environments) | [D](https://trust.cognigy.com/) | [D](https://trust.cognigy.com/) | · | · | · |
 | Decagon | · | [D](https://decagon.ai/security) | [D](https://decagon.ai/security) | · | [V](https://decagon.ai/blog/pricing-ai-agents) | [V](https://decagon.ai/blog/agent-deployment-engineering) |
 | ElevenLabs Agents | [D](https://elevenlabs.io/docs/overview/administration/data-residency) | [V](https://elevenlabs.io/agents/enterprise-conversational-ai) | [D](https://elevenlabs.io/docs/overview/administration/data-residency) | [D](https://elevenlabs.io/use-policy) | [D](https://elevenlabs.io/pricing/agents) | [D](https://elevenlabs.io/pricing/agents) |
 | Genesys Cloud AI | [D](https://help.genesys.cloud/articles/aws-regions-for-genesys-cloud-deployment/) | [D](https://help.genesys.cloud/articles/supported-security-standards/) | [D](https://help.genesys.cloud/articles/supported-security-standards/) | [V](https://www.genesys.com/article/genesys-cloud-ai-ethics) | [D](https://help.genesys.cloud/articles/about-agentic-virtual-agents/) | [D](https://help.genesys.cloud/articles/professional-services-overview/) |
 | Google Customer Engagement Suite | [D](https://docs.cloud.google.com/gemini-enterprise-cx/cx-agent-studio/reference/region) | [D](https://docs.cloud.google.com/dialogflow/docs/compliance-security-controls) | [D](https://docs.cloud.google.com/dialogflow/docs/compliance-security-controls) | [D](https://cloud.google.com/security/compliance/eu-ai-act) | [D](https://cloud.google.com/products/gemini-enterprise-for-customer-experience/cx-agent-studio/pricing) | [D](https://cloud.google.com/products/gemini-enterprise-for-customer-experience/cx-agent-studio/pricing) |
 | Intercom Fin | [D](https://www.intercom.com/security) | [D](https://www.intercom.com/security) | [D](https://www.intercom.com/security) | [D](https://www.intercom.com/help/en/articles/11712008-ai-agent-disclosure) | [D](https://fin.ai/pricing) | [D](https://www.intercom.com/legal/professional-services-terms) |
-| Kore.ai | [D](https://docs.kore.ai/agent-platform/getting-started) | [D](https://trust.kore.ai/) | [D](https://trust.kore.ai/) | · | [D](https://docs.kore.ai/agent-platform/administration/workspace-account) | [D](https://docs.kore.ai/agent-platform/getting-started) |
+| Kore.ai | [D](https://docs.kore.ai/agent-platform/getting-started) | [D](https://trust.kore.ai/) | [D](https://trust.kore.ai/) | · | [D](https://docs.kore.ai/agent-platform/administration/workspace-account) | · |
 | LivePerson | · | · | [D](https://www.liveperson.com/resources/security/) | · | · | [V](https://www.liveperson.com/services/professional-services/) |
 | Microsoft Copilot Studio / Dynamics 365 Contact Center | [D](https://learn.microsoft.com/en-us/microsoft-copilot-studio/data-location) | [D](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-certification) | [D](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-certification) | [D](https://www.microsoft.com/en-us/trust-center/compliance/eu-ai-act) | [D](https://www.microsoft.com/en-us/dynamics-365/products/contact-center/pricing) | [D](https://learn.microsoft.com/en-us/dynamics365/guidance/fasttrack/overview) |
 | Parloa | · | [D](https://trust.parloa.com/) | [D](https://trust.parloa.com/) | [V](https://www.parloa.com/blog/eu-ai-act-article-50-voice-ai/) | [D](https://parloa.com/platform/pricing/) | [V](https://www.parloa.com/blog/tp-and-parloa-partnership/) |
@@ -179,7 +179,7 @@ Out of 17 platforms.
 | SOC 2 (`cert_soc2`) | 16 | 1 | 17 | 0 | 0 |
 | EU AI Act page (`aiact`) | 5 | 3 | 8 | 9 | 0 |
 | Public billing unit (`pricing_model`) | 12 | 2 | 14 | 3 | 0 |
-| Deployment model (`deploy_model`) | 12 | 5 | 17 | 0 | 0 |
+| Deployment model (`deploy_model`) | 11 | 4 | 15 | 2 | 0 |
 
 ## Recorded values
 
@@ -189,13 +189,13 @@ Short values recorded with the evidence (billing unit, deployment model, MCP dir
 |---|---|---|---|---|---|---|---|---|---|---|
 | Ada | WhatsApp;Facebook Messenger;Instagram Direct;Twilio SMS;Twitter DM | chat;email;voice | 22 | client;server | reports;transcripts;AR classification;CSAT;topics | summary;transcript;variables;SIP UUI metadata |  | Type II | contact_sales_only | vendor_led |
 | Amazon Connect | SMS;WhatsApp;Apple Messages for Business | AI agents;agentic voice | 23 | client | dashboards;transcripts;conversational analytics;automated evaluations | prior self-service context |  | SOC (type not stated on page) | per_minute;per_message | self_serve |
-| Cognigy (NICE) | WhatsApp;SMS;Messenger;Microsoft Teams;LINE;Slack | listed (NLU and Universal Locale) | 23 | client;server | reports;conversation explorer;LLM QA scoring (beta) | transcript |  | Type II | contact_sales_only | self_serve;partner_led |
+| Cognigy (NICE) | WhatsApp;SMS;Messenger;Microsoft Teams;LINE;Slack | listed (NLU and Universal Locale) | 23 | client;server | reports;conversation explorer;LLM QA scoring (beta) | transcript |  | Type II | contact_sales_only |  |
 | Decagon | SMS;WhatsApp |  |  |  | traces;dashboards;transcripts;automated QA (Watchtower) | summary;conversation context | personal-agent detection in chat and voice;PACT (draft) | Type II | per_conversation;per_resolution | vendor_led |
 | ElevenLabs Agents | WhatsApp;SMS;Telegram;Slack | listed | 18 | client;server | dashboard;transcripts;success evaluation;sentiment;smart search | agent_message;reason | synthetic voice detection;PAP working group (no support yet) | Type II | per_minute;per_message | both |
 | Genesys Cloud AI | WhatsApp;SMS;Messenger;Apple Messages;Instagram | voice;digital | 14 |  | execution history;replay;dashboards;outcomes | summary;wrap-up codes;variables |  | Type 2 | usage_credits | vendor_led |
 | Google Customer Engagement Suite | WhatsApp;Instagram | voice (Preview);chat | 12 | client;server | conversation history;analytics;Quality AI scorecards | escalation flag;chat transcript |  | SOC 2 (type not stated) | per_conversation | self_serve |
 | Intercom Fin | WhatsApp;SMS;Instagram;Facebook Messenger;Slack | chat;voice | 21 | client;server | dashboards;topics;CX score;scorecards;monitors | summary;transcript |  | Type II | per_resolution | both |
-| Kore.ai | WhatsApp;SMS;Messenger;Instagram;Microsoft Teams;LINE;Telegram;Slack |  |  | client;server | traces;dashboards;LLM-scored pipelines;Quality AI | context variables;summary |  | Type II | usage_credits | self_serve |
+| Kore.ai | WhatsApp;SMS;Messenger;Instagram;Microsoft Teams;LINE;Telegram;Slack |  |  | client;server | traces;dashboards;LLM-scored pipelines;Quality AI | context variables;summary |  | Type II | usage_credits |  |
 | LivePerson | SMS;WhatsApp;Apple Messages;Messenger;Instagram;RCS;LINE;Viber;WeChat;KakaoTalk | chat;voice | 12 |  | report center;analytics studio;AI annotator | summary notes;automated summaries |  | type not stated | contact_sales_only | both |
 | Microsoft Copilot Studio / Dynamics 365 Contact Center | WhatsApp;Facebook;SMS;Telegram;Slack;Twilio | chat;voice | 21 | client | transcripts;outcomes;CSAT;themes;AI summary | full conversation history;variables |  | type not stated | per_seat;usage_credits | self_serve;partner_led |
 | Parloa | via Bird (channels not named) |  |  | server | transcripts and replay;real-time metrics;alerts;automated QA scoring;BI export | transcript;summary;case context | A2A and PAP (Poppy) middleware in design partnership | Type I;Type II | per_minute;per_conversation | partner_led |
@@ -207,4 +207,4 @@ Short values recorded with the evidence (billing unit, deployment model, MCP dir
 
 ## Re-verification sample
 
-Not yet drawn.
+41 cells drawn at random (seed 20261108, 10% of 408); 41 re-checked; 39 agree with the recorded status (95%). Disagreements were corrected in `data/evidence.csv` and are listed in `data/reverification.csv`.

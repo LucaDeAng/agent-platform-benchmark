@@ -185,3 +185,9 @@ All decided on 2026-11-08 after the first collection pass, i.e. **not blind** to
      or variations of a scenario, is `not_found`.
    - `aicaller`: agent-to-agent (A2A) endpoints alone, and answering-machine detection, do not count.
    - `cert_iso27001`: "aligned with ISO 27001" is not a certification and is `not_found`.
+4. **Re-verification of `not_found` cells.** The plan was to re-run one standard query for each
+   sampled `not_found` cell. Because the search cap had been reached again, 1 of the 10 sampled
+   `not_found` cells was re-checked with a web search and 9 by direct fetch of vendor pages.
+5. **Per-platform raw files removed.** Collection used one file per platform (`data/raw/`, visible in
+   the git history); after the gap pass they were merged into `data/evidence.csv`, which is the only
+   canonical data file. Corrections from re-verification were made there directly.

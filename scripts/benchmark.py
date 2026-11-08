@@ -3,7 +3,7 @@
 Usage:
     uv run python scripts/benchmark.py check            # validate data files
     uv run python scripts/benchmark.py check-raw FILE   # validate one per-platform raw file
-    uv run python scripts/benchmark.py merge            # data/raw/*.csv -> data/evidence.csv
+    uv run python scripts/benchmark.py merge            # collection phase only: data/raw/*.csv -> data/evidence.csv
     uv run python scripts/benchmark.py sample           # draw the 10% re-verification sample
     uv run python scripts/benchmark.py build            # write docs/results.md
 

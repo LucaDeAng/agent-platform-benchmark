@@ -1,0 +1,21 @@
+[project]
+name = "agent-platform-benchmark"
+version = "0.1.0"
+description = "Evidence-backed benchmark of voice and chat AI agent platforms for enterprise customer service, from public documentation only (snapshot November 2026)."
+readme = "README.md"
+authors = [
+    { name = "Luca De Angelis", email = "186620412+LucaDeAng@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.uv]
+package = false

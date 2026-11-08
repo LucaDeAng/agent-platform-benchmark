@@ -47,8 +47,10 @@ made explicit, or changed, after collection started. METHOD.md lists all of them
 not blind to the data.
 
 **How the work was done.** Evidence collection, the gap pass and the re-verification were carried out
-by LLM agents using web-search and page-fetch tools, under the author's supervision. The author set
-the rubric, reviewed the agents' reports and decided borderline cases. Because the same kind of
+by LLM agents (Claude Opus 5.5) using web-search and page-fetch tools, following METHOD.md. Borderline
+cases were decided by the coordinating agent and are logged as coding rules in METHOD.md. Luca De
+Angelis commissioned the benchmark, set its scope and approved its publication; he did not check
+individual cells. Because the same kind of
 tooling did both the collection and the re-checking, the re-verification below is **not an
 independent audit**.
 

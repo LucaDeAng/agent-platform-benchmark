@@ -22,8 +22,9 @@ that is documented has not been tested by us. Nothing here was verified hands-on
 - Access date of every row is recorded. Public pages change; the dataset is a snapshot.
 - No prices are reproduced, only the billing unit a vendor publishes.
 - Tooling: evidence collection, the gap pass and the re-verification were carried out by LLM agents
-  with web-search and page-fetch tools, under the author's supervision. The author wrote the rubric,
-  reviewed the agents' reports and decided borderline cases. The re-verification therefore uses the
+  (Claude Opus 5.5) with web-search and page-fetch tools. Borderline cases were decided by the
+  coordinating agent and are logged as coding rules below. Luca De Angelis commissioned the benchmark,
+  set its scope and approved its publication; he did not check individual cells. The re-verification therefore uses the
   same kind of tooling as the collection and is not an independent audit.
 
 ## Entity selection rule
